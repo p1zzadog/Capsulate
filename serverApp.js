@@ -2,7 +2,6 @@
 var express        = require('express');
 var bodyParser     = require('body-parser');
 var routes         = require('./routes/routes.js');
-var authRoutes     = require('./routes/authRoutes.js');
 var session        = require('express-session');
 var mongoose       = require('mongoose');
 var passport       = require('passport');
@@ -11,14 +10,26 @@ var passportConfig = require('./auth/authConfig/passport.js');
 mongoose.connect('mongodb://localhost/encapsulate');
 var app = express();
 
+app.use(session({
+	secret: 'keyboard cat',
+	resave: false,
+	saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // app config
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 
 app.use('/', routes);
+app.use('/view/dash', routes);
+app.use('/auth/check', routes);
 app.use('/auth/process-login', routes);
-app.use('/auth/register-user', authRoutes);
+app.use('/auth/register-user', routes);
+app.use('/api/me', routes);
 
 // server
 var port = 3000;

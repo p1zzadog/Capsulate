@@ -1,1 +1,18 @@
 <h2>Login View!</h2>
+
+<h3>Login</h3>
+<form ng-submit="loginCtrl.processLogin()">
+	<input ng-model="loginCtrl.loginForm.username" placeholder="username"/>
+	<input ng-model="loginCtrl.loginForm.password" type="password" placeholder="password"/>
+	<input type="submit"/>
+</form>
+
+<hr/>
+
+<h3>Register New User</h3>
+<form ng-submit="loginCtrl.processSignup()">
+	<input ng-model="loginCtrl.signupForm.username" placeholder="username"/>
+	<input ng-model="loginCtrl.signupForm.password" type="password" placeholder="password"/>
+	<input ng-model="loginCtrl.signupForm.email" type="email" placeholder="email"/>
+	<input type="submit"/>
+</form>

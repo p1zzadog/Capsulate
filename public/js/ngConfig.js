@@ -7,7 +7,7 @@ angular.module('capsuleApp')
 		function($stateProvider){
 			$stateProvider
 				.state('home', {
-					url         : '/home',
+					url         : '/view/home',
 					templateUrl : '/html/views/home.html',
 					controller  : 'homeController as homeCtrl'
 				})
@@ -18,7 +18,7 @@ angular.module('capsuleApp')
 
 				})
 				.state('dashboard', {
-					url         : '/dash',
+					url         : '/view/dash',
 					templateUrl : 'html/views/dash.html',
 					controller  : 'dashController as dashCtrl',
 				})
