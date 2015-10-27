@@ -1,0 +1,27 @@
+// instatiate
+angular.module('capsuleApp', ['ui.router', 'ngMaterial'])
+
+// configure
+angular.module('capsuleApp')
+	.config(['$stateProvider',
+		function($stateProvider){
+			$stateProvider
+				.state('home', {
+					url         : '/home',
+					templateUrl : '/html/views/home.html',
+					controller  : 'homeController as homeCtrl'
+				})
+				.state('login', {
+					url         : '/auth/login',
+					templateUrl : 'html/views/login.html',
+					controller  : 'loginController as loginCtrl',
+
+				})
+				.state('dashboard', {
+					url         : '/dash',
+					templateUrl : 'html/views/dash.html',
+					controller  : 'dashController as dashCtrl',
+				})
+		}
+	]);
+

@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html ng-app="bpApp">
+<html ng-app="capsuleApp">
 <head>
-	<title>Boilerplate</title>
+	<title>Encapsulate</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.min.css">
-	<link rel="stylesheet" type="text/css" href="./dest/css/allcss.css">	
+	<link rel="stylesheet" type="text/css" href="./css/main.css">	
 </head>
 <body>
-	<h1>Boilerplate!</h1>
+	<h1>Encapsulate</h1>
 
-	<div ng-view></div>
+	<nav>
+		<a href="#/home">Home</a>
+		<a href="#/auth/login">Login</a>
+		<a href="#/dash">Dashboard</a>
+	</nav>
+
+	<ui-view></ui-view>
 
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-animate.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-aria.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.min.js"></script>
-	<script type="text/javascript" src="/dest/js/alljs.js"></script>
+	<script type="text/javascript" src="/js/ngConfig.js"></script>
+	<script type="text/javascript" src="/js/ngHome.js"></script>
+	<script type="text/javascript" src="/js/ngLogin.js"></script>
+	<script type="text/javascript" src="/js/ngDash.js"></script>
 </body>
 </html>
