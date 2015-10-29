@@ -16,7 +16,7 @@ router.get('/view/dash', ensureAuth, function(req, res){
 
 // auth routes
 router.get('/auth/check', ensureAuthAjax, function(req, res){
-	console.log('/auth/check route')
+	console.log('/auth/check route');
 	res.send({success:'session is authenticated'});
 });
 router.post('/auth/process-login', authControl.processLogin);

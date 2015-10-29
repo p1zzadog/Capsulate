@@ -1,18 +1,44 @@
 <h2>Login View!</h2>
 
 <h3>Login</h3>
-<form ng-submit="loginCtrl.processLogin()">
-	<input ng-model="loginCtrl.loginForm.username" placeholder="username"/>
-	<input ng-model="loginCtrl.loginForm.password" type="password" placeholder="password"/>
-	<input type="submit"/>
+
+<form ng-submit="loginCtrl.processLogin()" >
+	<div layout>
+		<md-input-container flex="33">
+			<label>Username</label>
+			<input ng-model="loginCtrl.loginForm.username"/>
+		</md-input-container>
+	</div>
+	<div layout>
+		<md-input-container flex="33">
+			<label>Password</label>
+			<input ng-model="loginCtrl.loginForm.password" type="password"/>
+		</md-input-container>
+	</div>
+	<md-button type="submit" class="md-primary md-raised"/>Login</md-button>
 </form>
 
 <hr/>
 
 <h3>Register New User</h3>
 <form ng-submit="loginCtrl.processSignup()">
-	<input ng-model="loginCtrl.signupForm.username" placeholder="username"/>
-	<input ng-model="loginCtrl.signupForm.password" type="password" placeholder="password"/>
-	<input ng-model="loginCtrl.signupForm.email" type="email" placeholder="email"/>
-	<input type="submit"/>
+	<div layout>
+		<md-input-container flex="33">
+			<label>Username</label>
+			<input ng-model="loginCtrl.signupForm.username"/>
+		</md-input-container>
+	</div>
+	<div layout>
+		<md-input-container flex="33">
+			<label>Password</label>
+			<input ng-model="loginCtrl.signupForm.password"/>
+		</md-input-container>
+	</div>
+	<div layout>
+		<md-input-container flex="33">
+			<label>Email</label>
+			<input ng-model="loginCtrl.signupForm.email"/>
+		</md-input-container>
+	</div>
+	<md-button type="submit" class="md-primary md-raised"/>Register</md-button>
 </form>

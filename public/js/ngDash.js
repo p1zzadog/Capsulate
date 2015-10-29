@@ -28,4 +28,8 @@ angular.module('capsuleApp')
 			};
 		})
 
+		dashCtrl.createCapsule = function() {
+			console.log(dashCtrl.createCapsuleForm);
+		}
+
 	}]);

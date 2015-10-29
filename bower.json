@@ -1,0 +1,24 @@
+{
+  "name": "timecapsule",
+  "description": "",
+  "main": "serverApp.js",
+  "authors": [
+    "Steven A Moody <steve.moody2@gmail.com>"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/p1zzadog/time-capsule",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+
+  }
+}

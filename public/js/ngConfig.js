@@ -3,8 +3,8 @@ angular.module('capsuleApp', ['ui.router', 'ngMaterial'])
 
 // configure
 angular.module('capsuleApp')
-	.config(['$stateProvider',
-		function($stateProvider){
+	.config(['$stateProvider', '$mdThemingProvider',
+		function($stateProvider, $mdThemingProvider){
 			$stateProvider
 				.state('home', {
 					url         : '/view/home',
@@ -22,6 +22,24 @@ angular.module('capsuleApp')
 					templateUrl : 'html/views/dash.html',
 					controller  : 'dashController as dashCtrl',
 				})
+			$mdThemingProvider.theme('default')
+				.primaryPalette('deep-purple')
+				.accentPalette('light-blue')
+				.warnPalette('red')
 		}
 	]);
 
+angular.module('capsuleApp')
+	.controller('mainController', ['$http', '$mdSidenav', function($http, $mdSidenav){
+		var mainCtrl = this;
+		console.log('main view loaded!');
+
+		mainCtrl.sideNavOpen = function(){
+			$mdSidenav('left').open();
+		}
+
+		mainCtrl.sideNavClose = function(){
+			$mdSidenav('left').close();
+		}
+
+	}]);

@@ -6,17 +6,45 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">	
 </head>
-<body>
-	<h1>Encapsulate</h1>
+<body ng-cloak>
 
-	<nav>
-		<a href="#/view/home">Home</a>
-		<a href="#/auth/login">Login/Register</a>
-		<a href="/view/dash">Dashboard</a>
-		<a href="/auth/logout">Logout</a>
-	</nav>
+	<nav ng-controller="mainController as mainCtrl">
+    	<md-toolbar>
+    		<h1>Encapsulate</h1>
+   		   	<div class="md-toolbar-tools">
+        		<md-button ng-click="mainCtrl.sideNavOpen()" hide-gt-sm class="md-icon-button" aria-label="Navigation">
+          			<md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
+        		</md-button>
+				<div hide-sm>
+					<md-button ui-sref="home">Home</md-button></a>
+					<md-button ui-sref="login">Login/Register</md-button>
+					<md-button href="/view/dash">Dashboard</md-button>
+					<md-button href="/auth/logout">Logout</md-button>
+				</div>
+      		</div>
+    	</md-toolbar>
+	    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    		<md-toolbar>
+    			<div class="md-toolbar-tools">
+        		<md-button ng-click="mainCtrl.sideNavClose()" hide-gt-sm class="md-icon-button" aria-label="Navigation-Close">
+          			<md-icon md-svg-icon="img/icons/ic_clear_white_48px.svg"></md-icon>
+        		</md-button>
+    			</div>
+    		</md-toolbar>
+    			<div layout="column">
+    				<md-button class="md-primary" ui-sref="home">Home</md-button>
+    				<md-button class="md-primary" ui-sref="login">Login/Register</md-button>
+    				<md-button class="md-primary" ng-href="/view/dash">Dashboard</md-button>
+    				<md-button class="md-primary" ng-href="/auth/logout">Logout</md-button>
+				</div>
+    	</md-sidenav>
+    </nav>
+
+
 
 	<ui-view></ui-view>
 
