@@ -1,3 +1,5 @@
+// COPYRIGHT STEVEN ALAN MOODY
+
 // require
 var express        = require('express');
 var bodyParser     = require('body-parser');
