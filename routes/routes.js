@@ -3,6 +3,7 @@ var router = express.Router();
 var ensureAuth = require('../auth/authConfig/passport.js').ensureAuth;
 var ensureAuthAjax = require('../auth/authConfig/passport.js').ensureAuthAjax;
 var authControl = require('../auth/authController/authControl.js');
+var capsuleControl = require('../controllers/capsuleControl.js');
 
 // view routes
 router.get('/', function(req, res){
@@ -27,6 +28,7 @@ router.get('/auth/logout', authControl.logout);
 router.get('/api/me', ensureAuthAjax, function(req, res){
 	res.send({ user : req.user.username});
 })
+router.post('/api/create-capsule', ensureAuthAjax, capsuleControl.createCapsule);
 
 
 module.exports = router;

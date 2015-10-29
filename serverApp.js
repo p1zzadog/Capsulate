@@ -30,6 +30,7 @@ app.use('/auth/check', routes);
 app.use('/auth/process-login', routes);
 app.use('/auth/register-user', routes);
 app.use('/api/me', routes);
+app.use('/api/create-capsule', routes);
 
 // server
 var port = 3000;

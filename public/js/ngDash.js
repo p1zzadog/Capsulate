@@ -29,7 +29,15 @@ angular.module('capsuleApp')
 		})
 
 		dashCtrl.createCapsule = function() {
-			console.log(dashCtrl.createCapsuleForm);
+			$http({
+				method : 'post',
+				url    : '/api/create-capsule',
+				data   : dashCtrl.createCapsuleForm,
+			}).then(function(returnData){
+				console.log(returnData.data);
+			});
+
+			dashCtrl.createCapsuleForm = {};
 		}
 
 	}]);
