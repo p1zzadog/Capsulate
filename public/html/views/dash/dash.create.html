@@ -1,6 +1,4 @@
-<md-tabs md-dynamic-height md-border-bottom>
-    <md-tab label="Create Capsule" ng-click="dashCtrl.click()">
-        <md-content layout-padding>
+		<md-content layout-padding>
         	<h3>Welcome <span ng-bind="dashCtrl.user"></span></h3>
         	<md-card layout-padding>
          		<h1 class="md-display-2">Create Capsule</h1>
@@ -36,28 +34,3 @@
           		</form>
           	</md-card>
         </md-content>
-      </md-tab>
-      <md-tab label="Manage Capsules">
-      	<md-content layout-padding>
-      		<h3>Welcome <span ng-bind="dashCtrl.user"></span></h3>
-        	<md-content class="md-padding">
-          		<h1 class="md-display-2">Manage Capsules</h1>
-				<md-list layout="column">
-					<md-subheader>Capsules!</md-subheader>
-					<md-card layout-padding>
-						<md-list-item class="md-2-line" id="chat-item-{{$index}}" ng-repeat="capsule in dashCtrl.userCapsules track by $index">
-
-							<img ng-src="http://lorempixel.com/50/50/" class="md-avatar"></img>
-							<div class="md-list-item-text" layout="column">
-								<h3 ng-bind="capsule.unlockDate"></h3>
-								<p ng-bind="capsule.nickname"></p>
-							</div>
-
-						</md-list-item>
-					</md-card>
-				</md-list>
-	</md-content>
-        </md-content>
-     </md-tab>
-</md-tabs>
-

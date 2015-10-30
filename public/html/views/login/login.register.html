@@ -1,0 +1,36 @@
+		<md-content layout-padding>
+        		<md-card layout-padding>
+					<form ng-submit="loginCtrl.processSignup()" name="signupForm">
+						<div layout>
+							<md-input-container flex="33">
+								<label>Username</label>
+								<input ng-model="loginCtrl.signupForm.username" required name="username" md-maxlength="30" autocomplete="off"/>
+								<div ng-messages="signupForm.username.$error">
+									<div ng-message="md-maxlength">Maximum length is 30 characters</div>
+          							<div ng-message="required">This is required.</div>
+        						</div>
+							</md-input-container>
+						</div>
+						<div layout>
+							<md-input-container flex="33">
+								<label>Password</label>
+								<input ng-model="loginCtrl.signupForm.password" type="password" required name="password" minlength="6" autocomplete="off"/>
+								<div ng-messages="signupForm.password.$error">
+									<div ng-message="minlength">Minimum length is 6 characters</div>
+          							<div ng-message="required">This is required.</div>
+        						</div>
+							</md-input-container>
+						</div>
+						<div layout>
+							<md-input-container flex="33">
+								<label>Email</label>
+								<input ng-model="loginCtrl.signupForm.email" type="email" required ng-pattern="/^.+@.+\..+$/" name="email" autocomplete="off"/>
+								<div ng-messages="signupForm.email.$error">
+          							<div ng-message-exp="['required', 'pattern']">This is required and must look like an email.</div>
+        						</div>
+							</md-input-container>
+						</div>
+						<md-button type="submit" class="md-primary md-raised"/>Register</md-button>
+					</form>
+			</md-card>
+		</md-content>

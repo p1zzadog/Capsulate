@@ -18,7 +18,6 @@ var job = schedule.scheduleJob(rule, function(){
 	}, function(err, docs){
 		if (!err) console.log('no error in db.Capsule.find()');
 		if (err) console.log('err in db search');
-		console.log(docs);
 		docs.forEach(function(doc){
 			var payload   = {
  				to      : 'steve.moody2@gmail.com',

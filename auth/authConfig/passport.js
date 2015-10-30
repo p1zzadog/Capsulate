@@ -36,7 +36,7 @@ var ensureAuth = function(req, res, next){
 	console.log('ensureAuth: req.isAuthenticated', req.isAuthenticated())
 	if (req.isAuthenticated()) return next();
 
-	res.redirect('/#/auth/login');
+	res.redirect('/#/auth/login/login');
 
 };
 

@@ -8,7 +8,7 @@ angular.module('capsuleApp')
 		}).then(function(returnData){
 			if (returnData.data.error) {
 				console.log('ngDash /auth/check redirect');
-				window.location.href='#/auth/login';
+				window.location.href='#/auth/login/login';
 			};
 		})
 
@@ -24,18 +24,10 @@ angular.module('capsuleApp')
 				dashCtrl.user = returnData.data.user;
 				// if authenticated, get capsules for user
 				getCapsules();
-				// $http({
-				// 	method : 'get',
-				// 	url    : '/api/get-capsules'
-				// }).then(function(returnCapsules){
-				// 	if (returnCapsules.data.capsules){
-				// 		dashCtrl.userCapsules = returnCapsules.data.capsules;
-				// 	};
-				// });
 			}
 			else {
 				console.log('ngDash /api/me error route', returnData.data);
-				window.location.href='#/auth/login';
+				window.location.href='#/auth/login/login';
 			};
 		});
 
@@ -46,6 +38,9 @@ angular.module('capsuleApp')
 			}).then(function(returnCapsules){
 				if (returnCapsules.data.capsules){
 					dashCtrl.userCapsules = returnCapsules.data.capsules;
+					dashCtrl.userCapsules.forEach(function(capsule){
+						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
+					});
 				};
 			});
 		};

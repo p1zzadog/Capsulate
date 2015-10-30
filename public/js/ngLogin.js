@@ -1,5 +1,5 @@
 angular.module('capsuleApp')
-	.controller('loginController', ['$http', function($http){
+	.controller('loginController', ['$http', '$timeout', function($http, $timeout){
 		var loginCtrl = this;
 
 		loginCtrl.processLogin = function(){
@@ -9,10 +9,16 @@ angular.module('capsuleApp')
 				data   : loginCtrl.loginForm
 			}).then(function(returnData){
 				if (returnData.data.success) {
-					window.location.href="/#/view/dash";
+					window.location.href="/#/view/dash/create";
 				}
 				else {
-					console.log('loginCtrl.processLogin returnData error', returnData.data.error);
+					console.log('login error', returnData.data.error)
+					loginCtrl.loginError = true;
+					loginCtrl.loginErrorMessage = returnData.data.error;
+					$timeout(function(){
+						loginCtrl.loginError=false;
+					}, 1500);
+
 				};
 			}, function(err){
 				console.log('loginCtrl.processLogin err error', err);
@@ -27,7 +33,7 @@ angular.module('capsuleApp')
 				data   : loginCtrl.signupForm
 			}).then(function(returnData){
 				if (returnData.data.success) {
-					window.location.href="/#/view/dash";
+					window.location.href="/#/view/dash/create";
 				}
 				else {
 					console.log(returnData.data.error);

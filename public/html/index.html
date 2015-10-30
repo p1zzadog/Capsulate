@@ -12,16 +12,18 @@
 </head>
 <body ng-cloak>
 
-	<nav ng-controller="mainController as mainCtrl">
+	<div class="banner">
+		<h1>Encapsulate</h1>
+	</div>
+	<nav ng-controller="navController as navCtrl">
     	<md-toolbar layout-padding>
-    		<h1>Encapsulate</h1>
    		   	<div class="md-toolbar-tools">
-        		<md-button ng-click="mainCtrl.sideNavOpen()" hide-gt-sm class="md-icon-button" aria-label="Navigation">
+        		<md-button ng-click="navCtrl.sideNavOpen()" hide-gt-sm class="md-icon-button" aria-label="Navigation">
           			<md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
         		</md-button>
 				<div hide-sm>
 					<md-button ui-sref="home">Home</md-button></a>
-					<md-button ui-sref="login">Login/Register</md-button>
+					<md-button ui-sref="login.login">Login/Register</md-button>
 					<md-button href="/view/dash">Dashboard</md-button>
 					<md-button href="/auth/logout">Logout</md-button>
 				</div>
@@ -30,7 +32,7 @@
 	    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
     		<md-toolbar>
     			<div class="md-toolbar-tools">
-        		<md-button ng-click="mainCtrl.sideNavClose()" hide-gt-sm class="md-icon-button" aria-label="Navigation-Close">
+        		<md-button ng-click="navCtrl.sideNavClose()" hide-gt-sm class="md-icon-button" aria-label="Navigation-Close">
           			<md-icon md-svg-icon="img/icons/ic_clear_white_48px.svg"></md-icon>
         		</md-button>
     			</div>
@@ -54,6 +56,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-aria.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.0-rc1/angular-material.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-messages.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 	<script type="text/javascript" src="/js/ngConfig.js"></script>
 	<script type="text/javascript" src="/js/ngHome.js"></script>
 	<script type="text/javascript" src="/js/ngLogin.js"></script>
