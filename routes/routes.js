@@ -30,6 +30,7 @@ router.get('/api/me', ensureAuthAjax, function(req, res){
 })
 router.post('/api/create-capsule', ensureAuthAjax, capsuleControl.createCapsule);
 router.get('/api/get-capsules', ensureAuthAjax, capsuleControl.getCapsules);
+router.get('/api/get-invites', ensureAuthAjax, capsuleControl.getInvites);
 
 
 module.exports = router;

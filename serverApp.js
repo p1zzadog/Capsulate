@@ -35,6 +35,7 @@ app.use('/auth/register-user', routes);
 app.use('/api/me', routes);
 app.use('/api/create-capsule', routes);
 app.use('/api/get-capsules', routes);
+app.use('/api/get-invites', routes);
 
 // server
 var port = 3000;

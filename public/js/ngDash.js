@@ -13,6 +13,7 @@ angular.module('capsuleApp')
 				dashCtrl.user = returnData.data.user;
 				// if authenticated, get capsules for user
 				getCapsules();
+				getInvites();
 			}
 			else {
 				console.log('ngDash /api/me error route', returnData.data);
@@ -34,6 +35,20 @@ angular.module('capsuleApp')
 			});
 		};
 
+		function getInvites(){
+			$http({
+				method : 'get',
+				url    : '/api/get-invites'
+			}).then(function(returnCapsules){
+				if (returnCapsules.data.capsules){
+					dashCtrl.inviteCapsules = returnCapsules.data.capsules;
+					dashCtrl.inviteCapsules.forEach(function(capsule){
+						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
+					});
+				};
+			});
+		};
+
 
 		// Min and Max dates for Date Object
 		dashCtrl.createCapsuleForm = {};
@@ -49,6 +64,10 @@ angular.module('capsuleApp')
       		dashCtrl.createCapsuleForm.unlockDate.getDate()
       	);
 
+  		// number of friends to add
+
+  		dashCtrl.createCapsuleForm.inviteFriends = [];
+      	
   		// create capsule form submit
 		dashCtrl.createCapsule = function() {
 			dashCtrl.createCapsuleForm.locked = true;

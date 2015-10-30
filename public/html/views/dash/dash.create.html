@@ -5,6 +5,12 @@
           		<form ng-submit="dashCtrl.createCapsule()" name="createCapsuleForm">
 					<div layout>
 						<md-input-container flex="33">
+							<label>Please name this capsule</label>
+							<input ng-model="dashCtrl.createCapsuleForm.capsuleName"/>
+						</md-input-container>
+					</div>		
+					<div layout>
+						<md-input-container flex="33">
 							<label>What is your nickname?</label>
 							<input ng-model="dashCtrl.createCapsuleForm.nickname"/>
 						</md-input-container>
@@ -21,6 +27,35 @@
 							<textarea ng-model="dashCtrl.createCapsuleForm.futureOccupation" columns="1" md-maxlength="150"></textarea>
 						</md-input-container>
 					</div>
+					<div layout>
+						<md-list layout="column">
+							<md-subheader>Would you like to ask friends to contribute?</md-subheader>
+							<md-list-item>
+								<md-input-container>
+      								<label>Friends #1</label>
+      								<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[0]" ng-pattern="/^.+@.+\..+$/" type="email">
+    							</md-input-container>
+    						</md-list-item>
+    						<md-list-item>
+								<md-input-container>
+      								<label>Friends #2</label>
+      								<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[1]" ng-pattern="/^.+@.+\..+$/" type="email">
+    							</md-input-container>
+    						</md-list-item>
+    						<md-list-item>
+								<md-input-container>
+      								<label>Friends #3</label>
+      								<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[2]" ng-pattern="/^.+@.+\..+$/" type="email">
+    							</md-input-container>
+    						</md-list-item>
+    						<md-list-item>
+								<md-input-container>
+      								<label>Friends #4</label>
+      								<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[3]" ng-pattern="/^.+@.+\..+$/" type="email">
+    							</md-input-container>
+    						</md-list-item>
+    					</md-list>
+    				</div>
 					<label>When should this capsule unlock?</label>
 					<div layout>
 						<md-datepicker name="dateField" ng-model="dashCtrl.createCapsuleForm.unlockDate" required md-min-date="dashCtrl.minDate" md-max-date="dashCtrl.maxDate"></md-datepicker>

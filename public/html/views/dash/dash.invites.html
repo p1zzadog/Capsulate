@@ -3,12 +3,13 @@
    	<h1>Invites</h1>
 	<md-list layout="column">
 		<md-subheader>Capsules!</md-subheader>
-		<md-list-item ng-repeat="capsule in dashCtrl.userCapsules track by $index">
+		<md-list-item ng-repeat="capsule in dashCtrl.inviteCapsules track by $index">
 			<img ng-src="http://lorempixel.com/50/50/" class="md-avatar"></img>
 			<md-card layout-padding style="width:100%">
 				<div class="md-list-item-text" layout="column">
 					<h3>Unlock Date: <span ng-bind="capsule.unlockWrapper"></h3>
 					<p>Capsule Name: <span ng-bind="capsule.nickname"></p>
+					<p>Invited by: <span ng-bind="capsule.username"></span></p>
 				</div>
 			</md-card>
 		</md-list-item>			
