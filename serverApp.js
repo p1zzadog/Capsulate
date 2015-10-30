@@ -8,6 +8,7 @@ var session        = require('express-session');
 var mongoose       = require('mongoose');
 var passport       = require('passport');
 var passportConfig = require('./auth/authConfig/passport.js');
+var job = require('./senderDaemon.js');
 
 mongoose.connect('mongodb://localhost/encapsulate');
 var app = express();
@@ -33,6 +34,7 @@ app.use('/auth/process-login', routes);
 app.use('/auth/register-user', routes);
 app.use('/api/me', routes);
 app.use('/api/create-capsule', routes);
+app.use('/api/get-capsules', routes);
 
 // server
 var port = 3000;

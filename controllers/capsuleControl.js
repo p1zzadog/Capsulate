@@ -7,7 +7,8 @@ var createCapsule = function(req, res, next){
 		nickname : req.body.nickname,
 		celebrityCrush : req.body.celebrityCrush,
 		futureOccupation : req.body.futureOccupation,
-		unlockDate : req.body.unlockDate
+		unlockDate : req.body.unlockDate,
+		locked : req.body.locked
 	});
 
 	newCapsule.save(function(err, document){
@@ -22,6 +23,20 @@ var createCapsule = function(req, res, next){
 	});
 };
 
+var getCapsules = function(req, res, next){
+	Capsule.find({username:req.user.username}, function(err, docs){
+		if (!err){
+			res.send({capsules : docs});
+		}
+		else{
+			res.send({error: 'no capsules found'});
+		};
+	});
+
+
+};
+
 module.exports = {
 	createCapsule : createCapsule,
+	getCapsules   : getCapsules,
 }

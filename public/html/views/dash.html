@@ -1,43 +1,63 @@
-<h3>Welcome <span ng-bind="dashCtrl.user"></span></h3>
 <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Create Capsule">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Create Capsule</h1>
-          <form ng-submit="dashCtrl.createCapsule()">
-			<div layout>
-				<md-input-container flex="33">
-					<label>What is your nickname?</label>
-					<input ng-model="dashCtrl.createCapsuleForm.nickname"/>
-				</md-input-container>
-			</div>
-			<div layout>
-				<md-input-container flex="33">
-					<label>If you could meet any celebrity, who would it be and why?</label>
-					<textarea ng-model="dashCtrl.createCapsuleForm.celebrityCrush" columns="1" md-maxlength="150"></textarea>
-				</md-input-container>
-			</div>
-			<div layout>
-				<md-input-container flex="33">
-					<label>What do you want to be when you grow up?</label>
-					<textarea ng-model="dashCtrl.createCapsuleForm.futureOccupation" columns="1" md-maxlength="150"></textarea>
-				</md-input-container>
-			</div>
-			<div layout>
-				<md-input-container flex="33">
+    <md-tab label="Create Capsule" ng-click="dashCtrl.click()">
+        <md-content layout-padding>
+        	<h3>Welcome <span ng-bind="dashCtrl.user"></span></h3>
+        	<md-card layout-padding>
+         		<h1 class="md-display-2">Create Capsule</h1>
+          		<form ng-submit="dashCtrl.createCapsule()" name="createCapsuleForm">
+					<div layout>
+						<md-input-container flex="33">
+							<label>What is your nickname?</label>
+							<input ng-model="dashCtrl.createCapsuleForm.nickname"/>
+						</md-input-container>
+					</div>
+					<div layout>
+						<md-input-container flex="33">
+							<label>If you could meet any celebrity, who would it be and why?</label>
+							<textarea ng-model="dashCtrl.createCapsuleForm.celebrityCrush" columns="1" md-maxlength="150"></textarea>
+						</md-input-container>
+					</div>
+					<div layout>
+						<md-input-container flex="33">
+							<label>What do you want to be when you grow up?</label>
+							<textarea ng-model="dashCtrl.createCapsuleForm.futureOccupation" columns="1" md-maxlength="150"></textarea>
+						</md-input-container>
+					</div>
 					<label>When should this capsule unlock?</label>
-					<md-datepicker ng-model="dashCtrl.createCapsuleForm.unlockDate" md-placeholder="Enter date"></md-datepicker>
-				</md-input-container>
-			</div>	
-			<md-button type="submit" class="md-primary md-raised">Submit Capsule</md-button>	
-          </form>
+					<div layout>
+						<md-datepicker name="dateField" ng-model="dashCtrl.createCapsuleForm.unlockDate" required md-min-date="dashCtrl.minDate" md-max-date="dashCtrl.maxDate"></md-datepicker>
+        				<div class="validation-messages" ng-messages="createCapsuleForm.dateField.$error">
+        					<div ng-message="required">This date is required!</div>
+        					<div ng-message="mindate">Date is too early!</div>
+        					<div ng-message="maxdate">Date is too late!</div>
+      					</div>
+					</div>	
+					<md-button type="submit" class="md-primary md-raised">Submit Capsule</md-button>	
+          		</form>
+          	</md-card>
         </md-content>
       </md-tab>
       <md-tab label="Manage Capsules">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Manage Capsules</h1>
-          <p>Manage Capsules</p>
+      	<md-content layout-padding>
+      		<h3>Welcome <span ng-bind="dashCtrl.user"></span></h3>
+        	<md-content class="md-padding">
+          		<h1 class="md-display-2">Manage Capsules</h1>
+				<md-list layout="column">
+					<md-subheader>Capsules!</md-subheader>
+					<md-card layout-padding>
+						<md-list-item class="md-2-line" id="chat-item-{{$index}}" ng-repeat="capsule in dashCtrl.userCapsules track by $index">
+
+							<img ng-src="http://lorempixel.com/50/50/" class="md-avatar"></img>
+							<div class="md-list-item-text" layout="column">
+								<h3 ng-bind="capsule.unlockDate"></h3>
+								<p ng-bind="capsule.nickname"></p>
+							</div>
+
+						</md-list-item>
+					</md-card>
+				</md-list>
+	</md-content>
         </md-content>
-      </md-tab>
+     </md-tab>
 </md-tabs>
-<h3>Welcome <span ng-bind="dashCtrl.user"></span></h3>
 

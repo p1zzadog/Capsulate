@@ -1,5 +1,5 @@
 // instatiate
-angular.module('capsuleApp', ['ui.router', 'ngMaterial'])
+angular.module('capsuleApp', ['ui.router', 'ngMaterial', 'ngMessages'])
 
 // configure
 angular.module('capsuleApp')

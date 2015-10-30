@@ -41,6 +41,7 @@ var ensureAuth = function(req, res, next){
 };
 
 var ensureAuthAjax = function(req, res, next){
+	console.log('ensureAuthAjax, req is Auth?', req.isAuthenticated());
 	if (req.isAuthenticated()) return next();
 	console.log('ensureAuthAjax: session not authenticated')
 	res.send({error: "session not authenticated"});

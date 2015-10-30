@@ -2,29 +2,39 @@ var key = require('./sendgrid-api-key');
 var sendgrid = require('sendgrid')(key);
 var Capsule = require('./models/capsules.js');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/encapsulate');
+var schedule = require('node-schedule');
 
-console.log('senderDaemon');
+var rule = new schedule.RecurrenceRule();
+rule.hour=16;
+rule.minute=52;
 
-Capsule.find({username:"steve06m"}, function(err, doc){
-	console.log('mongoose find callback')
-	console.log('err',err);
-	console.log('doc',doc);
-	if (!err){
-		console.log('doc found, sending email');
-		var payload   = {
- 			to      : 'steve.moody2@gmail.com',
-  			from    : 'steve06m@huskers.unl.edu',
-  			subject : 'Saying Hi',
- 			text    : 'key test',
-		}
+var job = schedule.scheduleJob(rule, function(){
+	var today = new Date();
+	console.log('job runs!!!!')
+	
+	Capsule.find({
+		unlockDate : {$lt : today},
+		locked     : true
+	}, function(err, docs){
+		if (!err) console.log('no error in db.Capsule.find()');
+		if (err) console.log('err in db search');
+		console.log(docs);
+		docs.forEach(function(doc){
+			var payload   = {
+ 				to      : 'steve.moody2@gmail.com',
+  				from    : 'steve06m@huskers.unl.edu',
+  				subject : 'Saying Hi',
+ 				text    : 'Hello ' + doc.username + ', Your capsule has unlocked! Visit Encapsulate!',
+			};
 
-		sendgrid.send(payload, function(err, json) {
-  		if (err) { console.error(err); }
-  		console.log(json);
+			sendgrid.send(payload, function(err, json) {
+  				if (err) { console.error(err); }
+			});
+
+			doc.locked = false;
+			doc.save();
 		});
-
-	}
-	else console.log(err)
+	});
 });
 
+module.exports = job;

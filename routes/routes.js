@@ -29,6 +29,7 @@ router.get('/api/me', ensureAuthAjax, function(req, res){
 	res.send({ user : req.user.username});
 })
 router.post('/api/create-capsule', ensureAuthAjax, capsuleControl.createCapsule);
+router.get('/api/get-capsules', ensureAuthAjax, capsuleControl.getCapsules);
 
 
 module.exports = router;
