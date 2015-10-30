@@ -44,7 +44,7 @@ var processSignup = function(req, res, next){
 
 var logout = function(req, res){
   req.logout();
-  res.redirect('/#/view/home');
+  res.redirect('/');
 };
 
 

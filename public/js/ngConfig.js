@@ -16,7 +16,7 @@ angular.module('capsuleApp')
 					templateUrl : 'html/views/login/login.html',
 					controller  : 'loginController as loginCtrl',
 				})
-				.state('dashboard', {
+				.state('dash', {
 					url         : '/view/dash',
 					templateUrl : 'html/views/dash/dash.html',
 					controller  : 'dashController as dashCtrl',

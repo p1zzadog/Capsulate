@@ -2,6 +2,21 @@ angular.module('capsuleApp')
 	.controller('loginController', ['$http', '$timeout', function($http, $timeout){
 		var loginCtrl = this;
 
+		$http({
+			method : 'get',
+			url    : '/api/me',
+		}).then(function(returnData){
+			if (returnData.data.user) {
+				loginCtrl.user = returnData.data.user;
+				loginCtrl.loggedIn = true;
+			}
+			else {
+				console.log('ngDash /api/me error route', returnData.data);
+				window.location.href='#/auth/login';
+				loginCtrl.loggedIn = false;
+			};
+		});
+
 		loginCtrl.processLogin = function(){
 			$http({
 				method : 'post',
