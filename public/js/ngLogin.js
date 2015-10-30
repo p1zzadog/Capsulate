@@ -9,7 +9,7 @@ angular.module('capsuleApp')
 				data   : loginCtrl.loginForm
 			}).then(function(returnData){
 				if (returnData.data.success) {
-					window.location.href="/#/view/dash/create";
+					window.location.href="/#/view/dash";
 				}
 				else {
 					console.log('login error', returnData.data.error)
@@ -33,7 +33,7 @@ angular.module('capsuleApp')
 				data   : loginCtrl.signupForm
 			}).then(function(returnData){
 				if (returnData.data.success) {
-					window.location.href="/#/view/dash/create";
+					window.location.href="/#/view/dash";
 				}
 				else {
 					console.log(returnData.data.error);

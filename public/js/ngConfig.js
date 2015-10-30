@@ -15,49 +15,13 @@ angular.module('capsuleApp')
 					url         : '/auth/login',
 					templateUrl : 'html/views/login/login.html',
 					controller  : 'loginController as loginCtrl',
-					// views       : {
-					// 	"loginView"    : {
-					// 		template : 'arbitrary blah blah',
-					// 		// templateUrl : 'html/views/login/login.login.html',
-					// 	},
-					// 	"registerView" : {
-					// 		templateUrl : 'html/views/login/login.register.html',
-					// 	},
-					// },
-
-				})
-				.state('login.login', {
-					url         : '/login',
-					templateUrl : 'html/views/login/login.login.html',
-
-				})
-				.state('login.register', {
-					url         : '/register',
-					templateUrl : 'html/views/login/login.register.html',
-
-				})
-				.state('login.loggedin', {
-					url         : '/loggedin',
-					templateUrl : 'html/views/login/login.loggedin.html',
-
 				})
 				.state('dashboard', {
 					url         : '/view/dash',
 					templateUrl : 'html/views/dash/dash.html',
 					controller  : 'dashController as dashCtrl',
 				})
-				.state('dashboard.create', {
-					url         : '/create',
-					templateUrl : '/html/views/dash/dash.create.html'
-				})
-				.state('dashboard.manage', {
-					url         : '/manage',
-					templateUrl : '/html/views/dash/dash.manage.html'
-				})
-				.state('dashboard.invites', {
-					url         : '/invites',
-					templateUrl : '/html/views/dash/dash.invites.html'
-				})
+
 			$mdThemingProvider.theme('default')
 				.primaryPalette('deep-purple')
 				.accentPalette('light-blue')

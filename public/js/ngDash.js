@@ -8,7 +8,7 @@ angular.module('capsuleApp')
 		}).then(function(returnData){
 			if (returnData.data.error) {
 				console.log('ngDash /auth/check redirect');
-				window.location.href='#/auth/login/login';
+				window.location.href='#/auth/login';
 			};
 		})
 
@@ -27,7 +27,7 @@ angular.module('capsuleApp')
 			}
 			else {
 				console.log('ngDash /api/me error route', returnData.data);
-				window.location.href='#/auth/login/login';
+				window.location.href='#/auth/login';
 			};
 		});
 

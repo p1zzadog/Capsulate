@@ -1,10 +1,11 @@
+<h1>login view...</h1>
 <md-tabs md-dynamic-height md-border-bottom>
-    <md-tab label="Login" ui-sref=".login">
-        <ui-view></ui-view>
+    <md-tab label="Login">
+		<div ng-include="'./html/views/login/login.login.html'"></div>
 	</md-tab>
 
-	<md-tab label="Register New User" ui-sref=".register">
-        <ui-view></ui-view>
+	<md-tab label="Register New User">
+		<div ng-include="'./html/views/login/login.register.html'"></div>		
 	</md-tab>
 </md-tabs>
 
