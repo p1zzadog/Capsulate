@@ -10,14 +10,8 @@ router.get('/', function(req, res){
 	res.sendFile('/html/index.html', {root: './public'});
 });
 
-router.get('/view/dash', ensureAuth, function(req, res){
-	console.log('/view/dash handler');
-	res.redirect('/#/view/dash');
-});
-
 // auth routes
 router.get('/auth/check', ensureAuthAjax, function(req, res){
-	console.log('/auth/check route');
 	res.send({success:'session is authenticated'});
 });
 router.post('/auth/process-login', authControl.processLogin);
@@ -31,6 +25,7 @@ router.get('/api/me', ensureAuthAjax, function(req, res){
 router.post('/api/create-capsule', ensureAuthAjax, capsuleControl.createCapsule);
 router.get('/api/get-capsules', ensureAuthAjax, capsuleControl.getCapsules);
 router.get('/api/get-invites', ensureAuthAjax, capsuleControl.getInvites);
+router.get('/api/open-capsule/:capsuleId', ensureAuthAjax, capsuleControl.ensureUnlocked);
 
 
 module.exports = router;

@@ -9,15 +9,13 @@ angular.module('capsuleApp')
 			url    : '/api/me',
 		}).then(function(returnData){
 			if (returnData.data.user) {
-				console.log(returnData.data.user);
 				dashCtrl.user = returnData.data.user;
 				// if authenticated, get capsules for user
 				getCapsules();
 				getInvites();
 			}
 			else {
-				console.log('ngDash /api/me error route', returnData.data);
-				window.location.href='#/auth/login';
+				window.location.href='/#/auth/login';
 			};
 		});
 
@@ -53,11 +51,7 @@ angular.module('capsuleApp')
 		// Min and Max dates for Date Object
 		dashCtrl.createCapsuleForm = {};
 		dashCtrl.createCapsuleForm.unlockDate = new Date();
-  		dashCtrl.minDate = new Date(
-      		dashCtrl.createCapsuleForm.unlockDate.getFullYear(),
-      		dashCtrl.createCapsuleForm.unlockDate.getMonth(),
-      		dashCtrl.createCapsuleForm.unlockDate.getDate()
-      	);
+  		dashCtrl.minDate = dashCtrl.createCapsuleForm.unlockDate;
   		dashCtrl.maxDate = new Date(
       		dashCtrl.createCapsuleForm.unlockDate.getFullYear() + 10,
       		dashCtrl.createCapsuleForm.unlockDate.getMonth(),
@@ -77,16 +71,23 @@ angular.module('capsuleApp')
 				url    : '/api/create-capsule',
 				data   : dashCtrl.createCapsuleForm,
 			}).then(function(returnData){
-				console.log(returnData.data);
+				// Need to write a function to display success
+				// window.location.href="/#/"
 			});
 
 			dashCtrl.createCapsuleForm = {};
+			dashCtrl.createCapsuleForm.unlockDate = new Date();
 			getCapsules();
 		}
 
-
-		dashCtrl.click = function(){
-			console.log('click!')
-		}
+		dashCtrl.openCapsule = function(index){
+			dashCtrl.unlockedCapsule = [];
+			$http({
+				method : 'get',
+				url    : '/api/open-capsule/' + dashCtrl.userCapsules[index]._id,
+			}).then(function(returnData){
+				dashCtrl.unlockedCapsule[index] = returnData.data;
+			});	
+		};
 
 	}]);

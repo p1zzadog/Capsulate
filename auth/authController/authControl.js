@@ -9,7 +9,6 @@ var performLogin = function(req, res, next, user){
 };
 
 var processLogin = function(req, res, next){
-  console.log('processLogin function fires');
     var authFunction = passport.authenticate('local', function(err, user, info){
 
       if(err) return next(err);

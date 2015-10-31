@@ -32,7 +32,6 @@ angular.module('capsuleApp')
 angular.module('capsuleApp')
 	.controller('navController', ['$http', '$mdSidenav', function($http, $mdSidenav){
 		var navCtrl = this;
-		console.log('nav view loaded!');
 
 		navCtrl.sideNavOpen = function(){
 			$mdSidenav('left').open();

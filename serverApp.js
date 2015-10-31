@@ -36,6 +36,7 @@ app.use('/api/me', routes);
 app.use('/api/create-capsule', routes);
 app.use('/api/get-capsules', routes);
 app.use('/api/get-invites', routes);
+app.use('/api/open-capsule/:capsuleId', routes);
 
 // server
 var port = 3000;

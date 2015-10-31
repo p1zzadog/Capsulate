@@ -5,34 +5,34 @@ var mongoose = require('mongoose');
 var schedule = require('node-schedule');
 
 var rule = new schedule.RecurrenceRule();
-rule.hour=16;
-rule.minute=52;
+rule.hour=19;
+rule.minute=00;
 
 var job = schedule.scheduleJob(rule, function(){
 	var today = new Date();
-	console.log('job runs!!!!')
 	
 	Capsule.find({
 		unlockDate : {$lt : today},
 		locked     : true
 	}, function(err, docs){
-		if (!err) console.log('no error in db.Capsule.find()');
-		if (err) console.log('err in db search');
-		docs.forEach(function(doc){
-			var payload   = {
- 				to      : 'steve.moody2@gmail.com',
-  				from    : 'steve06m@huskers.unl.edu',
-  				subject : 'Saying Hi',
- 				text    : 'Hello ' + doc.username + ', Your capsule has unlocked! Visit Encapsulate!',
-			};
+		if (err) console.log('err in db search: ', err);
+		if (!err) {
+			docs.forEach(function(doc){
+				var payload   = {
+ 					to      : 'steve.moody2@gmail.com',
+  					from    : 'steve06m@huskers.unl.edu',
+  					subject : 'Saying Hi',
+ 					text    : 'Hello ' + doc.username + ', Your capsule '+ doc.capsuleName +' has unlocked! Visit Encapsulate!',
+				};
 
-			sendgrid.send(payload, function(err, json) {
-  				if (err) { console.error(err); }
+				sendgrid.send(payload, function(err, json) {
+  					if (err) { console.error(err); }
+				});
+
+				doc.locked = false;
+				doc.save();
 			});
-
-			doc.locked = false;
-			doc.save();
-		});
+		};		
 	});
 });
 

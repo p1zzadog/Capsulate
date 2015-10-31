@@ -12,7 +12,7 @@ angular.module('capsuleApp')
 			}
 			else {
 				console.log('ngDash /api/me error route', returnData.data);
-				window.location.href='#/auth/login';
+				window.location.href='/#/auth/login';
 				loginCtrl.loggedIn = false;
 			};
 		});
