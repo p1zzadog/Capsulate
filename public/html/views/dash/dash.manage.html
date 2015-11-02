@@ -15,7 +15,7 @@
 						<p ng-bind="dashCtrl.unlockedCapsule[$index].futureOccupation"></p>
 					</div>
 				</div>
-				<md-button class="md-primary md-raised" ng-click="dashCtrl.openCapsule($index)" ng-disabled="capsule.locked">Open!</md-button>
+				<md-button class="md-primary md-raised" ng-click="dashCtrl.openCapsule($index)" ng-disabled="capsule.locked" ng-bind="dashCtrl.openCapsuleButtonText[$index]" aria-label="Open {{capsule.capsuleName}}"></md-button>
 				<!-- add a close button -->
 			</md-card>
 		</md-list-item>			

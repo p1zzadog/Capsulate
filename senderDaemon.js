@@ -1,6 +1,6 @@
 var key = require('./sendgrid-api-key');
 var sendgrid = require('sendgrid')(key);
-var Capsule = require('./models/capsules.js');
+var Capsule = require('./models/capsules.js').Capsule;
 var mongoose = require('mongoose');
 var schedule = require('node-schedule');
 

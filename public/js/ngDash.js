@@ -19,36 +19,6 @@ angular.module('capsuleApp')
 			};
 		});
 
-		function getCapsules(){
-			$http({
-				method : 'get',
-				url    : '/api/get-capsules'
-			}).then(function(returnCapsules){
-				if (returnCapsules.data.capsules){
-					dashCtrl.userCapsules = returnCapsules.data.capsules;
-					dashCtrl.userCapsules.forEach(function(capsule){
-						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
-					});
-				};
-			});
-		};
-
-		function getInvites(){
-			$http({
-				method : 'get',
-				url    : '/api/get-invites'
-			}).then(function(returnCapsules){
-				if (returnCapsules.data.capsules){
-					console.log(returnCapsules.data.capsules)
-					dashCtrl.inviteCapsules = returnCapsules.data.capsules;
-					dashCtrl.inviteCapsules.forEach(function(capsule){
-						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
-					});
-				};
-			});
-		};
-
-
 		// Min and Max dates for Date Object
 		dashCtrl.createCapsuleForm = {};
 		dashCtrl.createCapsuleForm.unlockDate = new Date();
@@ -59,8 +29,7 @@ angular.module('capsuleApp')
       		dashCtrl.createCapsuleForm.unlockDate.getDate()
       	);
 
-  		// number of friends to add
-
+  		// initialize inviteFriends array
   		dashCtrl.createCapsuleForm.inviteFriends = [];
       	
   		// create capsule form submit
@@ -81,17 +50,28 @@ angular.module('capsuleApp')
 			getCapsules();
 		}
 
+		
+
+
 		// view unlocked capsule
 		dashCtrl.openCapsule = function(index){
-			dashCtrl.unlockedCapsule = [];
-			$http({
-				method : 'get',
-				url    : '/api/open-capsule/' + dashCtrl.userCapsules[index]._id,
-			}).then(function(returnData){
-				dashCtrl.unlockedCapsule[index] = returnData.data;
-			});	
+			if (!dashCtrl.unlockedCapsule[index]){
+				closeCapsules();
+				dashCtrl.unlockedCapsule = [];
+				$http({
+					method : 'get',
+					url    : '/api/open-capsule/' + dashCtrl.userCapsules[index]._id,
+				}).then(function(returnData){
+					dashCtrl.unlockedCapsule[index] = returnData.data;
+					dashCtrl.openCapsuleButtonText[index] = "Close!";
+				});	
+			}
+			else {
+				closeCapsules();
+			}
 		};
 
+		// view invite contribution form
 		dashCtrl.openInvite = function(index){
 			dashCtrl.openedInvite = [];
 			$http({
@@ -105,8 +85,58 @@ angular.module('capsuleApp')
 			})
 		}
 
+		// submit contribution form
 		dashCtrl.submitContribution = function(index){
-
+			dashCtrl.inviteForm.capsuleId = dashCtrl.inviteCapsules[index]._id;
+			$http({
+				method : 'post',
+				url    : '/api/submit-contribution',
+				data   : dashCtrl.inviteForm,
+			}).then(function(returnData){
+				if (returnData.data.success){
+					dashCtrl.openedInvite[index] = false;
+					getInvites();
+				}
+			})
+			dashCtrl.inviteForm = {};
 		}
+
+		// utility functions
+		function getCapsules(){
+			$http({
+				method : 'get',
+				url    : '/api/get-capsules'
+			}).then(function(returnCapsules){
+				if (returnCapsules.data.capsules){
+					dashCtrl.userCapsules = returnCapsules.data.capsules;
+					dashCtrl.userCapsules.forEach(function(capsule){
+						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
+					});
+					closeCapsules();
+				};
+			});
+		};
+
+		function getInvites(){
+			$http({
+				method : 'get',
+				url    : '/api/get-invites'
+			}).then(function(returnCapsules){
+				if (returnCapsules.data.capsules){
+					dashCtrl.inviteCapsules = returnCapsules.data.capsules;
+					dashCtrl.inviteCapsules.forEach(function(capsule){
+						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
+					});
+				};
+			});
+		};
+
+		function closeCapsules(){
+			dashCtrl.unlockedCapsule = [];
+			dashCtrl.openCapsuleButtonText = [];
+			for (var i = 0; i<dashCtrl.userCapsules.length; i++){
+				dashCtrl.openCapsuleButtonText[i]="Open";
+			};			
+		};
 
 	}]);

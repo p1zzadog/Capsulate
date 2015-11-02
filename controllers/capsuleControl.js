@@ -1,6 +1,7 @@
-var Capsule = require('../models/capsules.js');
-var sendInvite = require('../senderDaemon.js').sendInvite;
-var _ = require('lodash');
+var Capsule      = require('../models/capsules.js').Capsule;
+var Contribution = require('../models/capsules.js').Contribution;
+var sendInvite   = require('../senderDaemon.js').sendInvite;
+var _            = require('lodash');
 
 
 
@@ -42,7 +43,10 @@ var createCapsule = function(req, res, next){
 			res.send({error: "sorry, there was an error"});
 		}
 		else{
-			checkForInvites(document, req.user);
+			// -=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+			// MAKE SURE TO UN-COMMENT THIS TO SEND EMAILS TO CONTRIBUTERS
+			// -=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+			// checkForInvites(document, req.user);
 			res.send({success: "the capsule was created!"})
 		}
 	});
@@ -103,9 +107,12 @@ var ensureUnlocked = function(req, res, next){
 };
 
 var ensureInviteUnlocked = function(req, res, next){
+	// find the capsule
 	Capsule.findOne({_id:req.params.capsuleId, inviteFriends : req.user.email}, function(err, doc){
 		if (!err){
+			// if the invite is still open
 			if (_.find(doc.inviteLocked, function(invite){
+				// but first make sure authenticated user has contribution priveledges
 				 if (invite.inviteEmail === req.user.email) {
 				 	return !invite.inviteLocked;
 				 }
@@ -123,10 +130,57 @@ var ensureInviteUnlocked = function(req, res, next){
 	})
 };
 
+var submitContribution = function(req, res, next) {
+	Capsule.findOne({_id:req.body.capsuleId, inviteFriends : req.user.email}, function(err, doc){
+		if (!err){
+			if (_.find(doc.inviteLocked, function(invite){
+				if (invite.inviteEmail === req.user.email){
+					return !invite.inviteLocked;
+				}
+			})){
+				var newContribution = new Contribution({
+				capsuleId : req.body.capsuleId,
+				username  : req.user.username,
+				email     : req.user.email,
+				sample1   : req.body.sample1,
+				sample2   : req.body.sample2,
+				sample3   : req.body.sample3,
+				sample4   : req.body.sample4,
+				})
+
+				newContribution.save(function(err, contribution){
+					if (err){
+						console.log(err);
+						res.send({error: "sorry, there was an error"});
+					}
+					else {
+						_.find(doc.inviteLocked, function(invite){
+							if (invite.inviteEmail === req.user.email){
+								invite.inviteLocked = true;
+								doc.markModified('inviteLocked');
+							};
+						});
+						doc.contributions.push(contribution._id);
+						doc.save();
+						res.send({success: "contribution created!"});
+					};
+				});
+			}
+			else {
+				res.send({error: "this capsule can no longer be contributed to"});
+			};
+		}
+		else {
+			res.send({error: "capsule not found"});
+		};
+	});
+};
+
 module.exports = {
 	createCapsule        : createCapsule,
 	getCapsules          : getCapsules,
 	getInvites           : getInvites,
 	ensureUnlocked       : ensureUnlocked,
 	ensureInviteUnlocked : ensureInviteUnlocked,
+	submitContribution   : submitContribution,
 }

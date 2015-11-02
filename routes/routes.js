@@ -27,6 +27,7 @@ router.get('/api/get-capsules', ensureAuthAjax, capsuleControl.getCapsules);
 router.get('/api/get-invites', ensureAuthAjax, capsuleControl.getInvites);
 router.get('/api/open-capsule/:capsuleId', ensureAuthAjax, capsuleControl.ensureUnlocked);
 router.get('/api/open-invite/:capsuleId', ensureAuthAjax, capsuleControl.ensureInviteUnlocked);
+router.post('/api/submit-contribution', ensureAuthAjax, capsuleControl.submitContribution);
 
 
 module.exports = router;
