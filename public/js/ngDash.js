@@ -92,4 +92,21 @@ angular.module('capsuleApp')
 			});	
 		};
 
+		dashCtrl.openInvite = function(index){
+			dashCtrl.openedInvite = [];
+			$http({
+				method : 'get',
+				url    : '/api/open-invite/' + dashCtrl.inviteCapsules[index]._id,
+			}).then(function(returnData){
+				if (returnData.data.success){
+					dashCtrl.openedInvite[index]=true;
+				}
+				else console.log(returnData.data.error)				
+			})
+		}
+
+		dashCtrl.submitContribution = function(index){
+
+		}
+
 	}]);

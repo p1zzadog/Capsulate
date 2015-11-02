@@ -89,19 +89,44 @@ var getInvites = function(req, res, next){
 };
 
 var ensureUnlocked = function(req, res, next){
-	Capsule.findOne({_id:req.params.capsuleId, username : req.user.username}, function(err, docs){
+	Capsule.findOne({_id:req.params.capsuleId, username : req.user.username}, function(err, doc){
 		if (!err){
-			res.send(docs);
+			if (doc.locked === false){
+				res.send(doc);
+			}
+			
 		}
 		else{
 			res.send({error: 'capsule not found'});
 		}
 	})
-}
+};
+
+var ensureInviteUnlocked = function(req, res, next){
+	Capsule.findOne({_id:req.params.capsuleId, inviteFriends : req.user.email}, function(err, doc){
+		if (!err){
+			if (_.find(doc.inviteLocked, function(invite){
+				 if (invite.inviteEmail === req.user.email) {
+				 	return !invite.inviteLocked;
+				 }
+
+			})){
+				res.send({success: 'capsule is available for contribution'});
+			}
+			else {
+				res.send({error: 'this capsule can no longer be contributed to'});
+			}
+		}
+		else{
+			res.send({error: 'capsule not found'});
+		}
+	})
+};
 
 module.exports = {
-	createCapsule  : createCapsule,
-	getCapsules    : getCapsules,
-	getInvites     : getInvites,
-	ensureUnlocked : ensureUnlocked,
+	createCapsule        : createCapsule,
+	getCapsules          : getCapsules,
+	getInvites           : getInvites,
+	ensureUnlocked       : ensureUnlocked,
+	ensureInviteUnlocked : ensureInviteUnlocked,
 }
