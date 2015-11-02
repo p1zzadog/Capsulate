@@ -1,5 +1,5 @@
 angular.module('capsuleApp')
-	.controller('dashController', ['$http', function($http){
+	.controller('dashController', ['$http', '$scope', function($http, $scope){
 
 		var dashCtrl = this;
 
@@ -65,6 +65,7 @@ angular.module('capsuleApp')
 				}).then(function(returnData){
 					dashCtrl.unlockedCapsule[index] = returnData.data;
 					dashCtrl.openCapsuleButtonText[index] = "Close!";
+					getContributions(dashCtrl.unlockedCapsule[index]);
 				});	
 			}
 			else {
@@ -114,6 +115,7 @@ angular.module('capsuleApp')
 						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
 					});
 					closeCapsules();
+
 				};
 			});
 		};
@@ -131,6 +133,15 @@ angular.module('capsuleApp')
 				};
 			});
 		};
+
+		function getContributions(capsule){
+			$http({
+				method : 'get',
+				url    : '/api/get-contributions/' + capsule._id
+			}).then(function(returnData){
+				dashCtrl.contributions = returnData.data;
+			})
+		}
 
 		function closeCapsules(){
 			dashCtrl.unlockedCapsule = [];

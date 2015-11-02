@@ -1,18 +1,30 @@
 <md-content layout-padding>
-    <h3>Welcome <span ng-bind="dashCtrl.user"></span></h3>
+    <h2>Welcome <span ng-bind="dashCtrl.user"></span></hs>
     <h1>Manage Capsules</h1>
 	<md-list layout="column">
 		<md-subheader>Capsules!</md-subheader>
-		<md-list-item ng-repeat="capsule in dashCtrl.userCapsules track by $index | orderBy : 'unlockWrapper'">
+		<md-list-item ng-repeat="capsule in dashCtrl.userCapsules track by $index | orderBy : '-unlockWrapper'">
 			<img ng-src="http://lorempixel.com/50/50/" class="md-avatar"></img>
 			<md-card layout-padding style="width:100%" layout="row" layout-align="space-between center">
 				<div class="md-list-item-text" layout="column">
-					<h3>Unlock Date: <span ng-bind="capsule.unlockWrapper"></span></h3>
-					<p>Capsule Name: <span ng-bind="capsule.capsuleName"></span></p>
+					<h2>Unlock Date: <span ng-bind="capsule.unlockWrapper"></span></h3>
+					<h3>Capsule Name: <span ng-bind="capsule.capsuleName"></span></h4>
 					<div ng-if="dashCtrl.unlockedCapsule[$index]">
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].nickname"></p>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].celebrityCrush"></p>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].futureOccupation"></p>
+						<p>Your nickname was: <strong ng-bind="dashCtrl.unlockedCapsule[$index].nickname"></strong></p>
+						<p>Your celebrity crush was: <strong ng-bind="dashCtrl.unlockedCapsule[$index].celebrityCrush"></strong></p>
+						<p>Your guessed your future occupation would be: <strong ng-bind="dashCtrl.unlockedCapsule[$index].futureOccupation"></strong></p>
+						<hr/>
+						<md-list layout="column">
+							<md-list-item ng-repeat="contribution in dashCtrl.contributions">
+								<div class="md-list-item-text" layout="column">
+									<h4>Contributer Name: <strong ng-bind="contribution.username"></strong></h4>
+									<p>Placeholder Question 1: <strong ng-bind="contribution.sample1"></strong></p>
+									<p>Placeholder Question 2: <strong ng-bind="contribution.sample2"></strong></p>
+									<p>Placeholder Question 3: <strong ng-bind="contribution.sample3"></strong></p>
+									<p>Placeholder Question 4: <strong ng-bind="contribution.sample4"></strong></p>
+								</div>
+							</md-list-item>
+						</md-list>
 					</div>
 				</div>
 				<md-button class="md-primary md-raised" ng-click="dashCtrl.openCapsule($index)" ng-disabled="capsule.locked" ng-bind="dashCtrl.openCapsuleButtonText[$index]" aria-label="Open {{capsule.capsuleName}}"></md-button>

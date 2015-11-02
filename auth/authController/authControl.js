@@ -34,7 +34,7 @@ var processSignup = function(req, res, next){
         }
 		    else{
           console.log(err);
-		      return res.send({error : '123An error occured, please try again'})
+		      return res.send({error : 'An error occured, please try again'})
         }
       }
       performLogin(req, res, next, user);

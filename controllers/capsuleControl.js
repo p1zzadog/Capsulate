@@ -176,6 +176,19 @@ var submitContribution = function(req, res, next) {
 	});
 };
 
+var getContributions = function(req, res, next){
+	console.log('capsuleId', req.params.capsuleId);
+
+	Contribution.find({capsuleId:req.params.capsuleId}, function(err, docs){
+		if (err){
+			res.send({error: "there was an error grabbing contributions"});
+		}
+		else {
+			res.send(docs);
+		}
+	});
+};
+
 module.exports = {
 	createCapsule        : createCapsule,
 	getCapsules          : getCapsules,
@@ -183,4 +196,5 @@ module.exports = {
 	ensureUnlocked       : ensureUnlocked,
 	ensureInviteUnlocked : ensureInviteUnlocked,
 	submitContribution   : submitContribution,
+	getContributions     : getContributions
 }
