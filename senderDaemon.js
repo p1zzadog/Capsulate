@@ -36,4 +36,20 @@ var job = schedule.scheduleJob(rule, function(){
 	});
 });
 
-module.exports = job;
+var sendInvite = function(emailAddressTo, userFrom) {
+	var payload   = {
+ 		to      : emailAddressTo,
+  		from    : userFrom.email,
+  		subject : 'Invite to contribute to ' + userFrom.username + "'s time capsule!",
+ 		text    : 'Hello, ' +  userFrom.username + ' has invited you to contribute your thoughts to their time capsule. Please login or create an account with this email at <link>, then check your invites!',
+	};
+
+	sendgrid.send(payload, function(err, json) {
+  		if (err) { console.error(err); }
+	});
+}
+
+module.exports = {
+	job        : job,
+	sendInvite : sendInvite,
+};

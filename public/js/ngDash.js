@@ -39,6 +39,7 @@ angular.module('capsuleApp')
 				url    : '/api/get-invites'
 			}).then(function(returnCapsules){
 				if (returnCapsules.data.capsules){
+					console.log(returnCapsules.data.capsules)
 					dashCtrl.inviteCapsules = returnCapsules.data.capsules;
 					dashCtrl.inviteCapsules.forEach(function(capsule){
 						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
@@ -64,22 +65,23 @@ angular.module('capsuleApp')
       	
   		// create capsule form submit
 		dashCtrl.createCapsule = function() {
-			dashCtrl.createCapsuleForm.locked = true;
-			console.log(dashCtrl.createCapsuleForm);
 			$http({
 				method : 'post',
 				url    : '/api/create-capsule',
 				data   : dashCtrl.createCapsuleForm,
 			}).then(function(returnData){
+				console.log(returnData.data);
 				// Need to write a function to display success
 				// window.location.href="/#/"
 			});
 
 			dashCtrl.createCapsuleForm = {};
+			dashCtrl.createCapsuleForm.inviteFriends = [];
 			dashCtrl.createCapsuleForm.unlockDate = new Date();
 			getCapsules();
 		}
 
+		// view unlocked capsule
 		dashCtrl.openCapsule = function(index){
 			dashCtrl.unlockedCapsule = [];
 			$http({

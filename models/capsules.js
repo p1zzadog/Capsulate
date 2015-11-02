@@ -8,7 +8,8 @@ var capsuleSchema = mongoose.Schema({
 		futureOccupation : {type : String},
 		inviteFriends    : {type : Array},
 		unlockDate       : {type : Date,  required : true},
-		locked           : {type : Boolean, required : true}
+		locked           : {type : Boolean, required : true},
+		inviteLocked     : {type : Array},
 });
 
 var Capsule = mongoose.model('Capsule', capsuleSchema);
