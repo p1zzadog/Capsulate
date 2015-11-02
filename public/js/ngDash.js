@@ -48,6 +48,7 @@ angular.module('capsuleApp')
 			dashCtrl.createCapsuleForm.inviteFriends = [];
 			dashCtrl.createCapsuleForm.unlockDate = new Date();
 			getCapsules();
+			dashCtrl.selectedIndex = 1;
 		}
 
 		
