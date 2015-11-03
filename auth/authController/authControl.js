@@ -9,7 +9,6 @@ var performLogin = function(req, res, next, user){
 };
 
 var processLogin = function(req, res, next){
-  console.log('processLogin function fires');
     var authFunction = passport.authenticate('local', function(err, user, info){
 
       if(err) return next(err);
@@ -35,7 +34,7 @@ var processSignup = function(req, res, next){
         }
 		    else{
           console.log(err);
-		      return res.send({error : '123An error occured, please try again'})
+		      return res.send({error : 'An error occured, please try again'})
         }
       }
       performLogin(req, res, next, user);
@@ -44,7 +43,7 @@ var processSignup = function(req, res, next){
 
 var logout = function(req, res){
   req.logout();
-  res.redirect('/#/view/home');
+  res.redirect('/');
 };
 
 

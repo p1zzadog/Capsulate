@@ -8,7 +8,8 @@ var session        = require('express-session');
 var mongoose       = require('mongoose');
 var passport       = require('passport');
 var passportConfig = require('./auth/authConfig/passport.js');
-var job = require('./senderDaemon.js');
+var job = require('./senderDaemon.js').job;
+var awsKeys = require('./awsKeys.js');
 
 mongoose.connect('mongodb://localhost/encapsulate');
 var app = express();
@@ -35,6 +36,10 @@ app.use('/auth/register-user', routes);
 app.use('/api/me', routes);
 app.use('/api/create-capsule', routes);
 app.use('/api/get-capsules', routes);
+app.use('/api/get-invites', routes);
+app.use('/api/open-capsule/:capsuleId', routes);
+app.use('/api/get-contributions/:capsuleId', routes);
+
 
 // server
 var port = 3000;

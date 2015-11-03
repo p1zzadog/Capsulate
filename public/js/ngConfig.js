@@ -7,21 +7,21 @@ angular.module('capsuleApp')
 		function($stateProvider, $mdThemingProvider){
 			$stateProvider
 				.state('home', {
-					url         : '/view/home',
-					templateUrl : '/html/views/home.html',
+					url         : '',
+					templateUrl : '/html/views/home/home.html',
 					controller  : 'homeController as homeCtrl'
 				})
 				.state('login', {
 					url         : '/auth/login',
-					templateUrl : 'html/views/login.html',
+					templateUrl : 'html/views/login/login.html',
 					controller  : 'loginController as loginCtrl',
-
 				})
-				.state('dashboard', {
+				.state('dash', {
 					url         : '/view/dash',
-					templateUrl : 'html/views/dash.html',
+					templateUrl : 'html/views/dash/dash.html',
 					controller  : 'dashController as dashCtrl',
 				})
+
 			$mdThemingProvider.theme('default')
 				.primaryPalette('deep-purple')
 				.accentPalette('light-blue')
@@ -30,15 +30,14 @@ angular.module('capsuleApp')
 	]);
 
 angular.module('capsuleApp')
-	.controller('mainController', ['$http', '$mdSidenav', function($http, $mdSidenav){
-		var mainCtrl = this;
-		console.log('main view loaded!');
+	.controller('navController', ['$http', '$mdSidenav', function($http, $mdSidenav){
+		var navCtrl = this;
 
-		mainCtrl.sideNavOpen = function(){
+		navCtrl.sideNavOpen = function(){
 			$mdSidenav('left').open();
 		}
 
-		mainCtrl.sideNavClose = function(){
+		navCtrl.sideNavClose = function(){
 			$mdSidenav('left').close();
 		}
 
