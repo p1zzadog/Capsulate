@@ -2,7 +2,8 @@
    	<h2>Welcome <span ng-bind="dashCtrl.user"></span></h2>
        <md-card layout-padding>
          <h1 class="md-display-2">Create Capsule</h1>
-          <form ng-submit="dashCtrl.createCapsule()" name="createCapsuleForm">
+          <!-- <form ng-submit="dashCtrl.createCapsule()" name="createCapsuleForm"> -->
+          <form name="createCapsuleForm">
 			<div layout>
 				<md-input-container flex="33">
 					<label>Please name this capsule</label>
@@ -27,11 +28,12 @@
 					<textarea ng-model="dashCtrl.createCapsuleForm.futureOccupation" columns="1" md-maxlength="150"></textarea>
 				</md-input-container>
 			</div>
-<!-- 			<div layout>
-
-				<label>Would you like to upload a photo?</label>
-				<input type="file"/>
-			</div> -->
+			<div layout>
+      			<md-button class="md-primary md-raised">
+        			<label for="file-input">Select File</label>  
+      			</md-button>
+      			<input id="file-input" type="file" ng-model="dashCtrl.createCapsuleForm.image"/>
+			</div>
 			<div layout>
 				<md-list layout="column">
 					<md-subheader>Would you like to ask friends to contribute?</md-subheader>
@@ -69,8 +71,9 @@
         			<div ng-message="mindate">Date is too early!</div>
         			<div ng-message="maxdate">Date is too late!</div>
       			</div>
-			</div>	
-			<md-button type="submit" class="md-primary md-raised">Submit Capsule</md-button>	
+			</div>			
+			<md-button ng-click="dashCtrl.createCapsule()" class="md-primary md-raised">Submit Capsule</md-button>
+			<!-- <md-button type="submit" class="md-primary md-raised">Submit Capsule</md-button>	 -->
 		</form>
 	</md-card>
 </md-content>
