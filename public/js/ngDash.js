@@ -34,14 +34,13 @@ angular.module('capsuleApp')
       	
   		// create capsule form submit
 		dashCtrl.createCapsule = function() {
+			dashCtrl.createCapsuleForm.creationDate = new Date();
 			$http({
 				method : 'post',
 				url    : '/api/create-capsule',
 				data   : dashCtrl.createCapsuleForm,
 			}).then(function(returnData){
 				console.log(returnData.data);
-				// Need to write a function to display success
-				// window.location.href="/#/"
 			});
 
 			dashCtrl.createCapsuleForm = {};
@@ -113,6 +112,7 @@ angular.module('capsuleApp')
 					dashCtrl.userCapsules = returnCapsules.data.capsules;
 					dashCtrl.userCapsules.forEach(function(capsule){
 						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
+						capsule.creationWrapper = moment(capsule.creationDate).format("dddd, MMMM Do YYYY");
 					});
 					closeCapsules();
 

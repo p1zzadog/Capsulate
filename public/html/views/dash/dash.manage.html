@@ -1,25 +1,47 @@
 <md-content layout-padding>
-    <h2 flex-offset-gt-lg="25">Welcome <span ng-bind="dashCtrl.user"></span></hs>
+    <h2 flex-offset-gt-lg="25">Welcome <span ng-bind="dashCtrl.user"></span></h2>
     <h1 flex-offset-gt-lg="25" class="md-display-2">Manage Capsules</h1>
 	<md-list layout="column">
 		<md-list-item ng-repeat="capsule in dashCtrl.userCapsules track by $index | orderBy : '-unlockWrapper'">
 			<md-card layout-padding flex="100" flex-gt-lg="50" flex-offset-gt-lg="25" layout="row" layout-align="space-between center">
 				<div class="md-list-item-text" layout="column">
-					<h2>Unlock Date: <span ng-bind="capsule.unlockWrapper"></span></h3>
-					<h3>Capsule Name: <span ng-bind="capsule.capsuleName"></span></h4>
+					<h2>Capsule Name: <span ng-bind="capsule.capsuleName"></span></h2>					
+					<h3>Creation Date : <span ng-bind="capsule.creationWrapper"></span></h3>
+					<h3>Unlock Date: <span ng-bind="capsule.unlockWrapper"></span></h3>
+
 					<div ng-if="dashCtrl.unlockedCapsule[$index]">
-						<p>Your nickname was: <strong ng-bind="dashCtrl.unlockedCapsule[$index].nickname"></strong></p>
-						<p>Your celebrity crush was: <strong ng-bind="dashCtrl.unlockedCapsule[$index].celebrityCrush"></strong></p>
-						<p>Your guessed your future occupation would be: <strong ng-bind="dashCtrl.unlockedCapsule[$index].futureOccupation"></strong></p>
+						<h4>You attached the following picture:</h4>
+						<img ng-src="./img/attachments/IMG_2269.JPG">
+						<h4>What is your nickname? Do you like it?</h4>
+						<p ng-bind="dashCtrl.unlockedCapsule[$index].nickname"></p>
+						<h4>Where are you now?</h4>
+						<p ng-bind="dashCtrl.unlockedCapsule[$index].currentLocation"></p>
+						<h4>What is the best song in the universe?</h4>
+						<p ng-bind="dashCtrl.unlockedCapsule[$index].bestSong"></p>
+						<h4>What is your favorite recent memory?</h4>
+						<p ng-bind="dashCtrl.unlockedCapsule[$index].recentMemory"></p>
+						<h4>If you could meet any celebrity, who would it be and why?</h4>
+						<p ng-bind="dashCtrl.unlockedCapsule[$index].celebrityCrush"></p>
+						<h4>What do you most want for your future?</h4>
+						<p ng-bind="dashCtrl.unlockedCapsule[$index].futureOccupation"></p>
+						<h4>What is the best thing in life?</h4>
+						<p ng-bind="dashCtrl.unlockedCapsule[$index].bestThing"></p>
+						<h4>Would you like to write yourself a personal message?</h4>
+						<p ng-bind="dashCtrl.unlockedCapsule[$index].personalMessage"></p>					
+						
 						<hr/>
 						<md-list layout="column">
 							<md-list-item ng-repeat="contribution in dashCtrl.contributions">
 								<div class="md-list-item-text" layout="column">
 									<h4>Contributer Name: <strong ng-bind="contribution.username"></strong></h4>
-									<p>Placeholder Question 1: <strong ng-bind="contribution.sample1"></strong></p>
-									<p>Placeholder Question 2: <strong ng-bind="contribution.sample2"></strong></p>
-									<p>Placeholder Question 3: <strong ng-bind="contribution.sample3"></strong></p>
-									<p>Placeholder Question 4: <strong ng-bind="contribution.sample4"></strong></p>
+									<h5>What is your favorite recent memory with <span ng-bind="dashCtrl.user"></span>?</h5>
+									<p ng-bind="contribution.recentMemory"></p>
+									<h5>What is <span ng-bind="dashCtrl.user"></span> really bad at?</h5>
+									<p ng-bind="contribution.badAt"></p>									
+									<h5>What is <span ng-bind="dashCtrl.user"></span> the best at?</h5>
+									<p ng-bind="contribution.goodAt"></p>
+									<h5>Write <span ng-bind="dashCtrl.user"></span> a personal message!</h5>
+									<p ng-bind="contribution.personalMessage"></p>
 								</div>
 							</md-list-item>
 						</md-list>

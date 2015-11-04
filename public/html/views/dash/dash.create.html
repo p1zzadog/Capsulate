@@ -6,61 +6,100 @@
 
           <!-- <form ng-submit="dashCtrl.createCapsule()" name="createCapsuleForm"> -->
           <form name="createCapsuleForm">
+
 			<div layout>
 				<md-input-container flex>
 					<label>Please name this capsule</label>
 					<input ng-model="dashCtrl.createCapsuleForm.capsuleName"/>
 				</md-input-container>
+			</div>
+			<div layout="column">
+          		<md-input-container flex>
+          			<label ng-class="{'input-text-color' : dashCtrl.labelColor1 }">Would you like to upload a photo?</label>
+          		</md-input-container>
+          		<div ng-click="dashCtrl.labelColor1 = true">
+      				<md-button class="md-primary md-raised" ng-blur="dashCtrl.labelColor1 = false">
+        				<label for="file-input">Select File</label>  
+      				</md-button>
+      			</div>
+      			<input id="file-input" type="file" ng-model="dashCtrl.createCapsuleForm.image" class="ng-hide"/>
 			</div>		
 			<div layout>
 				<md-input-container flex>
-					<label>What is your nickname?</label>
+					<label>What is your nickname? Do you like it?</label>
 					<input ng-model="dashCtrl.createCapsuleForm.nickname"/>
 				</md-input-container>
 			</div>
 			<div layout>
 				<md-input-container flex>
-					<label>If you could meet any celebrity, who would it be and why?</label>
-					<textarea ng-model="dashCtrl.createCapsuleForm.celebrityCrush" columns="1" md-maxlength="150"></textarea>
+					<label>Where are you now?</label>
+					<input ng-model="dashCtrl.createCapsuleForm.currentLocation"/>
 				</md-input-container>
 			</div>
 			<div layout>
 				<md-input-container flex>
-					<label>What do you want to be when you grow up?</label>
-					<textarea ng-model="dashCtrl.createCapsuleForm.futureOccupation" columns="1" md-maxlength="150"></textarea>
+					<label>What is the best song in the universe?</label>
+					<input ng-model="dashCtrl.createCapsuleForm.bestSong"/>
 				</md-input-container>
 			</div>
 			<div layout>
-      			<md-button class="md-primary md-raised">
-        			<label for="file-input">Select File</label>  
-      			</md-button>
-      			<input id="file-input" type="file" ng-model="dashCtrl.createCapsuleForm.image" class="ng-hide"/>
+				<md-input-container flex>
+					<label>What is your favorite recent memory?</label>
+					<textarea ng-model="dashCtrl.createCapsuleForm.recentMemory" columns="1" md-maxlength="300"></textarea>
+				</md-input-container>
+			</div>			
+			<div layout>
+				<md-input-container flex>
+					<label>If you could meet any celebrity, who would it be and why?</label>
+					<textarea ng-model="dashCtrl.createCapsuleForm.celebrityCrush" columns="1" md-maxlength="300"></textarea>
+				</md-input-container>
 			</div>
 			<div layout>
+				<md-input-container flex>
+					<label>What do you most want for your future?</label>
+					<textarea ng-model="dashCtrl.createCapsuleForm.futureOccupation" columns="1" md-maxlength="300"></textarea>
+				</md-input-container>
+			</div>
+			<div layout>
+				<md-input-container flex>
+					<label>What is the best thing in life?</label>
+					<textarea ng-model="dashCtrl.createCapsuleForm.bestThing" columns="1" md-maxlength="300"></textarea>
+				</md-input-container>
+			</div>
+			<div layout>
+				<md-input-container flex>
+					<label>Would you like to write yourself a personal message?</label>
+					<textarea ng-model="dashCtrl.createCapsuleForm.personalMessage" columns="1" md-maxlength="300"></textarea>
+				</md-input-container>
+			</div>
+
+			<div layout>
 				<md-list layout="column">
-					<md-subheader>Would you like to ask friends to contribute?</md-subheader>
+					<md-input-container>
+						<label ng-class="{'input-text-color': dashCtrl.labelColor2}">Would you like to ask friends to contribute?</label>
+					</md-input-container>
 					<md-list-item>
 						<md-input-container>
-      						<label>Friends #1</label>
-      						<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[0]" ng-pattern="/^.+@.+\..+$/" type="email">
+      						<label>Email Friend #1</label>
+      						<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[0]" ng-pattern="/^.+@.+\..+$/" type="email" ng-focus="dashCtrl.labelColor2 = true" ng-blur="dashCtrl.labelColor2 = false">
     					</md-input-container>
     				</md-list-item>
     				<md-list-item>
 						<md-input-container>
-      						<label>Friends #2</label>
-      						<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[1]" ng-pattern="/^.+@.+\..+$/" type="email">
+      						<label>Email Friend #2</label>
+      						<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[1]" ng-pattern="/^.+@.+\..+$/" type="email" ng-focus="dashCtrl.labelColor2 = true" ng-blur="dashCtrl.labelColor2 = false">
     					</md-input-container>
     				</md-list-item>
     				<md-list-item>
 						<md-input-container>
-      						<label>Friends #3</label>
-      						<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[2]" ng-pattern="/^.+@.+\..+$/" type="email">
+      						<label>Email Friend #3</label>
+      						<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[2]" ng-pattern="/^.+@.+\..+$/" type="email" ng-focus="dashCtrl.labelColor2 = true" ng-blur="dashCtrl.labelColor2 = false">
     					</md-input-container>
     				</md-list-item>
     				<md-list-item>
 						<md-input-container>
-      						<label>Friends #4</label>
-      						<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[3]" ng-pattern="/^.+@.+\..+$/" type="email">
+      						<label>Email Friend #4</label>
+      						<input ng-model="dashCtrl.createCapsuleForm.inviteFriends[3]" ng-pattern="/^.+@.+\..+$/" type="email" ng-focus="dashCtrl.labelColor2 = true" ng-blur="dashCtrl.labelColor2 = false">
     					</md-input-container>
     				</md-list-item>
     			</md-list>

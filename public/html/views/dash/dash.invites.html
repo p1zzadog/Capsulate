@@ -13,27 +13,27 @@
 				<div ng-if="dashCtrl.openedInvite[$index]">
 					 <form ng-submit="dashCtrl.submitContribution($index)" name="createCapsuleForm">
 						<div layout>
-							<md-input-container>
-								<label>Sample Question 1</label>
-								<input ng-model="dashCtrl.inviteForm.sample1"/>
+							<md-input-container flex>
+								<label>What is your favorite recent memory with <span ng-bind="capsule.username"></span>?</label>
+								<textarea ng-model="dashCtrl.inviteForm.recentMemory" columns="1" md-maxlength="300"></textarea>
 							</md-input-container>
-						</div>		
+						</div>	
 						<div layout>
 							<md-input-container>
-								<label>Sample Question 2</label>
-								<input ng-model="dashCtrl.inviteForm.sample2"/>
-							</md-input-container>
-						</div>
-						<div layout>
-							<md-input-container>
-								<label>Sample Question 3</label>
-								<textarea ng-model="dashCtrl.inviteForm.sample3" columns="1" md-maxlength="150"></textarea>
+								<label>What is <span></span> really bad at?</label>
+								<textarea ng-model="dashCtrl.inviteForm.badAt" columns="1" md-maxlength="300"></textarea>
 							</md-input-container>
 						</div>
 						<div layout>
 							<md-input-container>
-								<label>Sample Question 4</label>
-								<textarea ng-model="dashCtrl.inviteForm.sample4" columns="1" md-maxlength="150"></textarea>
+								<label>What is <span></span> the best at?</label>
+								<textarea ng-model="dashCtrl.inviteForm.goodAt" columns="1" md-maxlength="300"></textarea>
+							</md-input-container>
+						</div>
+						<div layout>
+							<md-input-container>
+								<label>Write <span></span> a personal message!</label>
+								<textarea ng-model="dashCtrl.inviteForm.personalMessage" columns="1" md-maxlength="300"></textarea>
 							</md-input-container>
 						</div>
 						<md-button class="md-primary md-raised" type="submit">Submit your contribution!</md-button>

@@ -11,6 +11,11 @@ angular.module('capsuleApp')
 					templateUrl : '/html/views/home/home.html',
 					controller  : 'homeController as homeCtrl'
 				})
+				.state('home2', {
+					url         : '/',
+					templateUrl : '/html/views/home/home.html',
+					controller  : 'homeController as homeCtrl'
+				})
 				.state('login', {
 					url         : '/auth/login',
 					templateUrl : 'html/views/login/login.html',
@@ -47,7 +52,7 @@ angular.module('capsuleApp')
 		}
 
 		angular.element($window).bind("scroll", function() {
-            if (this.pageYOffset >= 899) {
+           	if (this.pageYOffset >= 850) {
                	navCtrl.bannerClose = true;
             }
            	$scope.$apply();

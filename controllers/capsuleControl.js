@@ -26,15 +26,22 @@ var createCapsule = function(req, res, next){
 	};
 
 	var newCapsule = new Capsule({
-		capsuleName : req.body.capsuleName,
-		username : req.user.username,
-		nickname : req.body.nickname,
-		celebrityCrush : req.body.celebrityCrush,
+		creationDate     : req.body.creationDate,
+		capsuleName      : req.body.capsuleName,
+		username         : req.user.username,
+		nickname         : req.body.nickname,
+		celebrityCrush   : req.body.celebrityCrush,
 		futureOccupation : req.body.futureOccupation,
-		inviteFriends : req.body.inviteFriends,
-		unlockDate : req.body.unlockDate,
-		locked : true,
-		inviteLocked : inviteLocked(req.body.inviteFriends),
+		inviteFriends    : req.body.inviteFriends,
+		unlockDate       : req.body.unlockDate,
+		locked           : true,
+		inviteLocked     : inviteLocked(req.body.inviteFriends),
+		currentLocation  : req.body.currentLocation,
+		bestSong         : req.body.bestSong,
+		recentMemory     : req.body.recentMemory,
+		bestThing        : req.body.bestThing,
+		personalMessage  : req.body.personalMessage,
+		creationDate     : req.body.creationDate,
 	});
 
 	newCapsule.save(function(err, document){
@@ -46,7 +53,7 @@ var createCapsule = function(req, res, next){
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 			// MAKE SURE TO UN-COMMENT THIS TO SEND EMAILS TO CONTRIBUTERS
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-			// checkForInvites(document, req.user);
+			checkForInvites(document, req.user);
 			res.send({success: "the capsule was created!"})
 		}
 	});
@@ -61,6 +68,7 @@ var getCapsules = function(req, res, next){
 					unlockDate   : doc.unlockDate,
 					_id          : doc._id,
 					locked       : doc.locked,
+					creationDate : doc.creationDate,
 				};
 			})});
 		}
@@ -139,13 +147,13 @@ var submitContribution = function(req, res, next) {
 				}
 			})){
 				var newContribution = new Contribution({
-				capsuleId : req.body.capsuleId,
-				username  : req.user.username,
-				email     : req.user.email,
-				sample1   : req.body.sample1,
-				sample2   : req.body.sample2,
-				sample3   : req.body.sample3,
-				sample4   : req.body.sample4,
+				capsuleId         : req.body.capsuleId,
+				username          : req.user.username,
+				email             : req.user.email,
+				recentMemory      : req.body.recentMemory,
+				badAt             : req.body.badAt,
+				goodAt            : req.body.goodAt,
+				personalMessage   : req.body.personalMessage,
 				})
 
 				newContribution.save(function(err, contribution){

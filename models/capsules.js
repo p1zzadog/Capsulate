@@ -11,18 +11,25 @@ var capsuleSchema = mongoose.Schema({
 	locked           : {type : Boolean, required : true},
 	inviteLocked     : {type : Array},
 	contributions    : {type : Array},
+	currentLocation  : {type : String},
+	bestSong         : {type : String},
+	recentMemory     : {type : String},
+	bestThing        : {type : String},
+	personalMessage  : {type : String},
+	creationDate     : {type : Date},
+
 });
 
 var Capsule = mongoose.model('Capsule', capsuleSchema);
 
 var contributionSchema = mongoose.Schema({
-	capsuleId : {type : mongoose.Schema.ObjectId, ref:'Capsule'},
-	username  : {type: String},
-	email     : {type: String},
-	sample1   : {type: String},
-	sample2   : {type: String},
-	sample3   : {type: String},
-	sample4   : {type: String},
+	capsuleId         : {type : mongoose.Schema.ObjectId, ref:'Capsule'},
+	username          : {type: String},
+	email             : {type: String},
+	recentMemory      : {type: String},
+	badAt             : {type: String},
+	goodAt            : {type: String},
+	personalMessage   : {type: String},
 })
 
 var Contribution = mongoose.model('Conribution', contributionSchema);

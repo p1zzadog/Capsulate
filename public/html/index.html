@@ -13,16 +13,17 @@
 <body ng-cloak>
 
 	<div ng-controller="navController as navCtrl">
-		<div layout="row" class="banner banner-image" ng-class="{'closed' : navCtrl.bannerClose}" scroll>
+		<div layout="row" class="banner banner-image" ng-class="{'closed' : navCtrl.bannerClose}">
 			<div flex="33" hide show-gt-lg>
 			</div>
 			<div flex="33" layout="column" layout-align="space-around center" hide show-gt-lg>
 				<md-button ng-click="navCtrl.closeBanner()" class="md-icon-button" aria-label="closeBanner" class="close-banner-btn" flex="33">
-        			<md-icon md-svg-icon="img/icons/ic_play_circle_outline_white_48px.svg"></md-icon>
+        			<md-icon md-svg-icon="img/icons/ic_more_vert_white_48px.svg"></md-icon>
        			</md-button>
        		</div>
        		<div flex="33">
 				<h1>Encapsulate</h1>
+
 			</div>
 		</div>
 
@@ -59,7 +60,7 @@
     	</nav>
     </div>
 
-    <div style="min-height: 900px">
+    <div class="template-container">
     		<ui-view></ui-view>
 	</div>
 
