@@ -34,7 +34,13 @@ angular.module('capsuleApp')
       	
   		// create capsule form submit
 		dashCtrl.createCapsule = function() {
-			dashCtrl.createCapsuleForm.creationDate = new Date();
+			// CODE FOR PRODUCTION
+			// dashCtrl.createCapsuleForm.creationDate = new Date();
+			
+			// CODE FOR DEMO!! Remove me for production
+			dashCtrl.createCapsuleForm.creationDate = new Date(1996, 9, 8);
+			// /CODE FOR DEMO
+
 			$http({
 				method : 'post',
 				url    : '/api/create-capsule',
