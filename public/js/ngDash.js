@@ -13,6 +13,7 @@ angular.module('capsuleApp')
 				// if authenticated, get capsules for user
 				getCapsules();
 				getInvites();
+				getSharedCapsules();
 			}
 			else {
 				window.location.href='/#/auth/login';
@@ -62,7 +63,8 @@ angular.module('capsuleApp')
 		// view unlocked capsule
 		dashCtrl.openCapsule = function(index){
 			if (!dashCtrl.unlockedCapsule[index]){
-				closeCapsules();
+				dashCtrl.closeCapsules();
+				dashCtrl.closeShared();
 				dashCtrl.unlockedCapsule = [];
 				$http({
 					method : 'get',
@@ -74,7 +76,8 @@ angular.module('capsuleApp')
 				});	
 			}
 			else {
-				closeCapsules();
+				dashCtrl.closeCapsules();
+				dashCtrl.closeShared();
 			}
 		};
 
@@ -90,6 +93,26 @@ angular.module('capsuleApp')
 				}
 				else console.log(returnData.data.error)				
 			})
+		}
+
+		dashCtrl.openShared = function(index){
+			if (!dashCtrl.unlockedCapsule[index]){
+				dashCtrl.closeCapsules();
+				dashCtrl.closeShared();
+				dashCtrl.unlockedCapsule = [];
+				$http({
+					method : 'get',
+					url    : '/api/open-shared/' + dashCtrl.sharedCapsules[index]._id,
+				}).then(function(returnData){
+					dashCtrl.unlockedCapsule[index] = returnData.data;
+					dashCtrl.openSharedButtonText[index] = "Close!";
+					getContributions(dashCtrl.unlockedCapsule[index]);
+				});	
+			}
+			else {
+				dashCtrl.closeCapsules();
+				dashCtrl.closeShared();
+			}
 		}
 
 		// submit contribution form
@@ -120,7 +143,7 @@ angular.module('capsuleApp')
 						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
 						capsule.creationWrapper = moment(capsule.creationDate).format("dddd, MMMM Do YYYY");
 					});
-					closeCapsules();
+					dashCtrl.closeCapsules();
 
 				};
 			});
@@ -140,6 +163,22 @@ angular.module('capsuleApp')
 			});
 		};
 
+		function getSharedCapsules(){
+			$http({
+				method : 'get',
+				url    : '/api/get-shared'  
+			}).then(function(returnCapsules){
+				if (returnCapsules.data.capsules) {
+					dashCtrl.sharedCapsules = returnCapsules.data.capsules;
+					dashCtrl.sharedCapsules.forEach(function(capsule){
+						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
+						capsule.creationWrapper = moment(capsule.creationDate).format("dddd, MMMM Do YYYY");
+					});
+					dashCtrl.closeShared();
+				};
+			});
+		};
+
 		function getContributions(capsule){
 			$http({
 				method : 'get',
@@ -149,12 +188,20 @@ angular.module('capsuleApp')
 			})
 		}
 
-		function closeCapsules(){
+		dashCtrl.closeCapsules = function(){
 			dashCtrl.unlockedCapsule = [];
 			dashCtrl.openCapsuleButtonText = [];
 			for (var i = 0; i<dashCtrl.userCapsules.length; i++){
 				dashCtrl.openCapsuleButtonText[i]="Open";
 			};			
 		};
+
+		dashCtrl.closeShared = function(){
+			dashCtrl.unlockedCapsule = [];
+			dashCtrl.openSharedButtonText = [];
+			for (var i = 0; i<dashCtrl.sharedCapsules.length; i++){
+				dashCtrl.openSharedButtonText[i]="Open";
+			};	
+		}
 
 	}]);

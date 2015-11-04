@@ -100,8 +100,45 @@ var getInvites = function(req, res, next){
 	})
 };
 
+var getShared = function(req, res, next){
+	console.log('getShared');
+	Capsule.find({inviteFriends:req.user.email}, function(err, docs){
+		console.log('getShared err', err);
+		console.log('getShared docs', docs);
+		if (!err){
+			res.send({capsules : docs.map(function(doc){
+				return {
+					capsuleName  : doc.capsuleName,
+					unlockDate   : doc.unlockDate,
+					_id          : doc._id,
+					locked       : doc.locked,
+					creationDate : doc.creationDate,
+					username     : doc.username,
+				};
+			})});
+		}
+		else{
+			res.send({error: 'no capsules found'});
+		};
+	});
+};
+
 var ensureUnlocked = function(req, res, next){
 	Capsule.findOne({_id:req.params.capsuleId, username : req.user.username}, function(err, doc){
+		if (!err){
+			if (doc.locked === false){
+				res.send(doc);
+			}
+			
+		}
+		else{
+			res.send({error: 'capsule not found'});
+		}
+	})
+};
+
+var ensureSharedUnlocked = function(req, res, next){
+	Capsule.findOne({_id:req.params.capsuleId, inviteFriends : req.user.email}, function(err, doc){
 		if (!err){
 			if (doc.locked === false){
 				res.send(doc);
@@ -201,8 +238,10 @@ module.exports = {
 	createCapsule        : createCapsule,
 	getCapsules          : getCapsules,
 	getInvites           : getInvites,
+	getShared            : getShared,
 	ensureUnlocked       : ensureUnlocked,
 	ensureInviteUnlocked : ensureInviteUnlocked,
 	submitContribution   : submitContribution,
-	getContributions     : getContributions
+	getContributions     : getContributions,
+	ensureSharedUnlocked : ensureSharedUnlocked
 }

@@ -1,17 +1,18 @@
 <md-content layout-padding>
     <h2 flex-offset-gt-lg="25">Welcome <span ng-bind="dashCtrl.user"></span></h2>
-    <h1 flex-offset-gt-lg="25" class="md-display-2">Manage Capsules</h1>
+    <h1 flex-offset-gt-lg="25" class="md-display-2">View Shared Capsules</h1>
 	<md-list layout="column">
-		<md-list-item ng-repeat="capsule in dashCtrl.userCapsules track by $index | orderBy : '-creationWrapper'">
+		<md-list-item ng-repeat="sharedCapsule in dashCtrl.sharedCapsules track by $index | orderBy : '-creationWrapper'">
 			<md-card layout-padding flex="100" flex-gt-lg="50" flex-offset-gt-lg="25" layout="row" layout-align="space-between center">
 				<div class="md-list-item-text" layout="column">
-					<h2>Capsule Name: <span ng-bind="capsule.capsuleName"></span></h2>					
-					<h3>Creation Date : <span ng-bind="capsule.creationWrapper"></span></h3>
-					<h3>Unlock Date: <span ng-bind="capsule.unlockWrapper"></span></h3>
+					<h2>Creator Name: <span ng-bind="sharedCapsule.username"></span></h2>	
+					<h2>Capsule Name: <span ng-bind="sharedCapsule.capsuleName"></span></h2>					
+					<h3>Creation Date : <span ng-bind="sharedCapsule.creationWrapper"></span></h3>
+					<h3>Unlock Date: <span ng-bind="sharedCapsule.unlockWrapper"></span></h3>
 
 					<div ng-if="dashCtrl.unlockedCapsule[$index]">
 						<h4>You attached the following picture:</h4>
-						<img ng-src="./img/attachments/IMG_2269.JPG">
+						<img src="https://houseofflyingscalpels.files.wordpress.com/2013/07/pizza-dog-hawkeye.jpg">
 						<h4>What is your nickname? Do you like it?</h4>
 						<p ng-bind="dashCtrl.unlockedCapsule[$index].nickname"></p>
 						<h4>Where are you now?</h4>
@@ -47,7 +48,7 @@
 						</md-list>
 					</div>
 				</div>
-				<md-button class="md-primary md-raised" ng-click="dashCtrl.openCapsule($index)" ng-disabled="capsule.locked" ng-bind="dashCtrl.openCapsuleButtonText[$index]" aria-label="Open {{capsule.capsuleName}}"></md-button>
+				<md-button class="md-primary md-raised" ng-click="dashCtrl.openShared($index)" ng-disabled="sharedCapsule.locked" ng-bind="dashCtrl.openSharedButtonText[$index]" aria-label="Open {{capsule.capsuleName}}"></md-button>
 				<!-- add a close button -->
 			</md-card>
 		</md-list-item>			

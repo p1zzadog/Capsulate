@@ -25,8 +25,10 @@ router.get('/api/me', ensureAuthAjax, function(req, res){
 router.post('/api/create-capsule', ensureAuthAjax, capsuleControl.createCapsule);
 router.get('/api/get-capsules', ensureAuthAjax, capsuleControl.getCapsules);
 router.get('/api/get-invites', ensureAuthAjax, capsuleControl.getInvites);
+router.get('/api/get-shared', ensureAuthAjax, capsuleControl.getShared);
 router.get('/api/open-capsule/:capsuleId', ensureAuthAjax, capsuleControl.ensureUnlocked);
 router.get('/api/open-invite/:capsuleId', ensureAuthAjax, capsuleControl.ensureInviteUnlocked);
+router.get('/api/open-shared/:capsuleId', ensureAuthAjax, capsuleControl.ensureSharedUnlocked);
 router.post('/api/submit-contribution', ensureAuthAjax, capsuleControl.submitContribution);
 router.get('/api/get-contributions/:capsuleId', ensureAuthAjax, capsuleControl.getContributions);
 

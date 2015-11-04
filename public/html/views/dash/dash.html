@@ -1,4 +1,4 @@
-<md-tabs md-dynamic-height md-border-bottom md-selected="dashCtrl.selectedIndex">
+<md-tabs md-dynamic-height md-border-bottom md-selected="dashCtrl.selectedIndex" ng-click="dashCtrl.closeCapsules; dashCtrl.closeShared;">
     <md-tab label="Create Capsule">
     	<div ng-include="'./html/views/dash/dash.create.html'"></div>
     </md-tab>
@@ -7,6 +7,9 @@
     </md-tab>
     <md-tab label="Capsule Invites">
     	<div ng-include="'./html/views/dash/dash.invites.html'"></div>
+    </md-tab>
+    <md-tab label="Shared Capsules">
+    	<div ng-include="'./html/views/dash/dash.shared.html'"></div>
     </md-tab>
 </md-tabs>
 

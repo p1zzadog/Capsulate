@@ -37,6 +37,7 @@ app.use('/api/me', routes);
 app.use('/api/create-capsule', routes);
 app.use('/api/get-capsules', routes);
 app.use('/api/get-invites', routes);
+app.use('/api/get-shared', routes);
 app.use('/api/open-capsule/:capsuleId', routes);
 app.use('/api/get-contributions/:capsuleId', routes);
 
