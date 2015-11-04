@@ -96,17 +96,17 @@ angular.module('capsuleApp')
 		}
 
 		dashCtrl.openShared = function(index){
-			if (!dashCtrl.unlockedCapsule[index]){
+			if (!dashCtrl.unlockedSharedCapsule[index]){
 				dashCtrl.closeCapsules();
 				dashCtrl.closeShared();
-				dashCtrl.unlockedCapsule = [];
+				dashCtrl.unlockedSharedCapsule = [];
 				$http({
 					method : 'get',
 					url    : '/api/open-shared/' + dashCtrl.sharedCapsules[index]._id,
 				}).then(function(returnData){
-					dashCtrl.unlockedCapsule[index] = returnData.data;
+					dashCtrl.unlockedSharedCapsule[index] = returnData.data;
 					dashCtrl.openSharedButtonText[index] = "Close!";
-					getContributions(dashCtrl.unlockedCapsule[index]);
+					getContributions(dashCtrl.unlockedSharedCapsule[index]);
 				});	
 			}
 			else {
@@ -197,7 +197,7 @@ angular.module('capsuleApp')
 		};
 
 		dashCtrl.closeShared = function(){
-			dashCtrl.unlockedCapsule = [];
+			dashCtrl.unlockedSharedCapsule = [];
 			dashCtrl.openSharedButtonText = [];
 			for (var i = 0; i<dashCtrl.sharedCapsules.length; i++){
 				dashCtrl.openSharedButtonText[i]="Open";

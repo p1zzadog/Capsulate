@@ -10,25 +10,25 @@
 					<h3>Creation Date : <span ng-bind="sharedCapsule.creationWrapper"></span></h3>
 					<h3>Unlock Date: <span ng-bind="sharedCapsule.unlockWrapper"></span></h3>
 
-					<div ng-if="dashCtrl.unlockedCapsule[$index]">
+					<div ng-if="dashCtrl.unlockedSharedCapsule[$index]">
 						<h4>You attached the following picture:</h4>
 						<img src="https://houseofflyingscalpels.files.wordpress.com/2013/07/pizza-dog-hawkeye.jpg">
 						<h4>What is your nickname? Do you like it?</h4>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].nickname"></p>
+						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].nickname"></p>
 						<h4>Where are you now?</h4>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].currentLocation"></p>
+						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].currentLocation"></p>
 						<h4>What is the best song in the universe?</h4>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].bestSong"></p>
+						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].bestSong"></p>
 						<h4>What is your favorite recent memory?</h4>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].recentMemory"></p>
+						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].recentMemory"></p>
 						<h4>If you could meet any celebrity, who would it be and why?</h4>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].celebrityCrush"></p>
+						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].celebrityCrush"></p>
 						<h4>What do you most want for your future?</h4>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].futureOccupation"></p>
+						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].futureOccupation"></p>
 						<h4>What is the best thing in life?</h4>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].bestThing"></p>
+						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].bestThing"></p>
 						<h4>Would you like to write yourself a personal message?</h4>
-						<p ng-bind="dashCtrl.unlockedCapsule[$index].personalMessage"></p>					
+						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].personalMessage"></p>					
 						
 						<hr/>
 						<md-list layout="column">
