@@ -1,5 +1,5 @@
 // instatiate
-angular.module('capsuleApp', ['ui.router', 'ngMaterial', 'ngMessages'])
+angular.module('capsuleApp', ['ui.router', 'ngMaterial', 'ngMessages', 'ngAnimate'])
 
 // configure
 angular.module('capsuleApp')
@@ -23,14 +23,14 @@ angular.module('capsuleApp')
 				})
 
 			$mdThemingProvider.theme('default')
-				.primaryPalette('deep-purple')
+				.primaryPalette('indigo')
 				.accentPalette('light-blue')
 				.warnPalette('red')
 		}
 	]);
 
 angular.module('capsuleApp')
-	.controller('navController', ['$http', '$mdSidenav', function($http, $mdSidenav){
+	.controller('navController', ['$http', '$mdSidenav', '$window', '$scope', function($http, $mdSidenav, $window, $scope){
 		var navCtrl = this;
 
 		navCtrl.sideNavOpen = function(){
@@ -41,4 +41,20 @@ angular.module('capsuleApp')
 			$mdSidenav('left').close();
 		}
 
+		navCtrl.closeBanner = function(){
+			console.log('closeBanner');
+			navCtrl.bannerClose = true;
+		}
+
+		angular.element($window).bind("scroll", function() {
+            if (this.pageYOffset >= 899) {
+               	navCtrl.bannerClose = true;
+            }
+           	$scope.$apply();
+       	});
+
+		
+
+
 	}]);
+

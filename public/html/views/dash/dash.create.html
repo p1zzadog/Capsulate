@@ -1,29 +1,31 @@
 <md-content layout-padding>
-   	<h2>Welcome <span ng-bind="dashCtrl.user"></span></h2>
-       <md-card layout-padding>
-         <h1 class="md-display-2">Create Capsule</h1>
+   	<h2 flex-offset-gt-lg="25">Welcome <span ng-bind="dashCtrl.user"></span></h2>
+   	<h1 flex-offset-gt-lg="25" class="md-display-2">Create Capsule</h1>
+   	<div flex="100"layout="row">
+       <md-card layout-padding flex="100" flex-gt-lg="50" flex-offset-gt-lg="25">
+
           <!-- <form ng-submit="dashCtrl.createCapsule()" name="createCapsuleForm"> -->
           <form name="createCapsuleForm">
 			<div layout>
-				<md-input-container flex="33">
+				<md-input-container flex>
 					<label>Please name this capsule</label>
 					<input ng-model="dashCtrl.createCapsuleForm.capsuleName"/>
 				</md-input-container>
 			</div>		
 			<div layout>
-				<md-input-container flex="33">
+				<md-input-container flex>
 					<label>What is your nickname?</label>
 					<input ng-model="dashCtrl.createCapsuleForm.nickname"/>
 				</md-input-container>
 			</div>
 			<div layout>
-				<md-input-container flex="33">
+				<md-input-container flex>
 					<label>If you could meet any celebrity, who would it be and why?</label>
 					<textarea ng-model="dashCtrl.createCapsuleForm.celebrityCrush" columns="1" md-maxlength="150"></textarea>
 				</md-input-container>
 			</div>
 			<div layout>
-				<md-input-container flex="33">
+				<md-input-container flex>
 					<label>What do you want to be when you grow up?</label>
 					<textarea ng-model="dashCtrl.createCapsuleForm.futureOccupation" columns="1" md-maxlength="150"></textarea>
 				</md-input-container>
@@ -32,7 +34,7 @@
       			<md-button class="md-primary md-raised">
         			<label for="file-input">Select File</label>  
       			</md-button>
-      			<input id="file-input" type="file" ng-model="dashCtrl.createCapsuleForm.image"/>
+      			<input id="file-input" type="file" ng-model="dashCtrl.createCapsuleForm.image" class="ng-hide"/>
 			</div>
 			<div layout>
 				<md-list layout="column">
@@ -76,4 +78,5 @@
 			<!-- <md-button type="submit" class="md-primary md-raised">Submit Capsule</md-button>	 -->
 		</form>
 	</md-card>
+</div>
 </md-content>

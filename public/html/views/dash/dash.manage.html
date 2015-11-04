@@ -1,11 +1,9 @@
 <md-content layout-padding>
-    <h2>Welcome <span ng-bind="dashCtrl.user"></span></hs>
-    <h1>Manage Capsules</h1>
+    <h2 flex-offset-gt-lg="25">Welcome <span ng-bind="dashCtrl.user"></span></hs>
+    <h1 flex-offset-gt-lg="25" class="md-display-2">Manage Capsules</h1>
 	<md-list layout="column">
-		<md-subheader>Capsules!</md-subheader>
 		<md-list-item ng-repeat="capsule in dashCtrl.userCapsules track by $index | orderBy : '-unlockWrapper'">
-			<img ng-src="http://lorempixel.com/50/50/" class="md-avatar"></img>
-			<md-card layout-padding style="width:100%" layout="row" layout-align="space-between center">
+			<md-card layout-padding flex="100" flex-gt-lg="50" flex-offset-gt-lg="25" layout="row" layout-align="space-between center">
 				<div class="md-list-item-text" layout="column">
 					<h2>Unlock Date: <span ng-bind="capsule.unlockWrapper"></span></h3>
 					<h3>Capsule Name: <span ng-bind="capsule.capsuleName"></span></h4>

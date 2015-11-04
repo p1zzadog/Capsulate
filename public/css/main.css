@@ -1,11 +1,33 @@
 .banner {
-	background-color: #673AB7;
+	background-color: #3F51B5;
 	color: white;
-	text-align: center;
-/*	margin:0;*/
 }
 
 .banner h1 {
 	margin:0;
 	padding:10px;
+}
+
+@media screen and (min-width: 1200px) {
+
+.banner-image{
+	background-image: url("../img/background/cameraphone1080.png");
+	background-attachment: fixed;
+	height:1080px;
+
+	transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.banner-image.closed{
+	height:0px;
+}
+
+.banner h1 {
+	line-height:400px;
+	vertical-align: center;
+	margin-right:200px;
+}
+
 }

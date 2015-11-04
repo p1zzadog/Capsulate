@@ -1,11 +1,9 @@
 <md-content layout-padding>
-	<h2>Welcome <span ng-bind="dashCtrl.user"></span></h2>
-   	<h1>Invites</h1>
+	<h2 flex-offset-gt-lg="25">Welcome <span ng-bind="dashCtrl.user"></span></h2>
+   	<h1 flex-offset-gt-lg="25" class="md-display-2">Invites</h1>
 	<md-list layout="column">
-		<md-subheader>Capsules!</md-subheader>
 		<md-list-item ng-repeat="capsule in dashCtrl.inviteCapsules track by $index">
-			<img ng-src="http://lorempixel.com/50/50/" class="md-avatar"></img>
-			<md-card layout-padding style="width:100%">
+			<md-card layout-padding flex="100" flex-gt-lg="50" flex-offset-gt-lg="25">
 				<div class="md-list-item-text" layout="column">
 					<h2>Unlock Date: <span ng-bind="capsule.unlockWrapper"></h2>
 					<h3>Capsule Name: <span ng-bind="capsule.capsuleName"></h3>
@@ -15,25 +13,25 @@
 				<div ng-if="dashCtrl.openedInvite[$index]">
 					 <form ng-submit="dashCtrl.submitContribution($index)" name="createCapsuleForm">
 						<div layout>
-							<md-input-container flex="33">
+							<md-input-container>
 								<label>Sample Question 1</label>
 								<input ng-model="dashCtrl.inviteForm.sample1"/>
 							</md-input-container>
 						</div>		
 						<div layout>
-							<md-input-container flex="33">
+							<md-input-container>
 								<label>Sample Question 2</label>
 								<input ng-model="dashCtrl.inviteForm.sample2"/>
 							</md-input-container>
 						</div>
 						<div layout>
-							<md-input-container flex="33">
+							<md-input-container>
 								<label>Sample Question 3</label>
 								<textarea ng-model="dashCtrl.inviteForm.sample3" columns="1" md-maxlength="150"></textarea>
 							</md-input-container>
 						</div>
 						<div layout>
-							<md-input-container flex="33">
+							<md-input-container>
 								<label>Sample Question 4</label>
 								<textarea ng-model="dashCtrl.inviteForm.sample4" columns="1" md-maxlength="150"></textarea>
 							</md-input-container>

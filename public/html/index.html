@@ -12,43 +12,57 @@
 </head>
 <body ng-cloak>
 
-	<div class="banner">
-		<h1>Encapsulate</h1>
-	</div>
-	<nav ng-controller="navController as navCtrl">
-    	<md-toolbar layout-padding>
-   		   	<div class="md-toolbar-tools">
-        		<md-button ng-click="navCtrl.sideNavOpen()" hide-gt-sm class="md-icon-button" aria-label="Navigation">
-          			<md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
-        		</md-button>
-				<div hide-sm>
-					<md-button ui-sref="home">Home</md-button></a>
-					<md-button ui-sref="login">Login/Register</md-button>
-					<md-button ui-sref="dash">Dashboard</md-button>
-					<md-button href="/auth/logout">Logout</md-button>
-				</div>
-      		</div>
-    	</md-toolbar>
-	    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-    		<md-toolbar>
-    			<div class="md-toolbar-tools">
-        		<md-button ng-click="navCtrl.sideNavClose()" hide-gt-sm class="md-icon-button" aria-label="Navigation-Close">
-          			<md-icon md-svg-icon="img/icons/ic_clear_white_48px.svg"></md-icon>
-        		</md-button>
-    			</div>
+	<div ng-controller="navController as navCtrl">
+		<div layout="row" class="banner banner-image" ng-class="{'closed' : navCtrl.bannerClose}" scroll>
+			<div flex="33" hide show-gt-lg>
+			</div>
+			<div flex="33" layout="column" layout-align="space-around center" hide show-gt-lg>
+				<md-button ng-click="navCtrl.closeBanner()" class="md-icon-button" aria-label="closeBanner" class="close-banner-btn" flex="33">
+        			<md-icon md-svg-icon="img/icons/ic_play_circle_outline_white_48px.svg"></md-icon>
+       			</md-button>
+       		</div>
+       		<div flex="33">
+				<h1>Encapsulate</h1>
+			</div>
+		</div>
+
+	
+		<nav>
+    		<md-toolbar layout-padding>
+   		   		<div class="md-toolbar-tools">
+        			<md-button ng-click="navCtrl.sideNavOpen()" hide-gt-sm class="md-icon-button" aria-label="Navigation">
+          				<md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
+        			</md-button>
+					<div hide-sm>
+						<md-button ui-sref="home">Home</md-button></a>
+						<md-button ui-sref="login">Login/Register</md-button>
+						<md-button ui-sref="dash">Dashboard</md-button>
+						<md-button href="/auth/logout">Logout</md-button>
+					</div>
+      			</div>
     		</md-toolbar>
-    			<div layout="column">
-    				<md-button class="md-primary" ui-sref="home">Home</md-button>
-    				<md-button class="md-primary" ui-sref="login">Login/Register</md-button>
-    				<md-button class="md-primary" ng-href="/view/dash">Dashboard</md-button>
-    				<md-button class="md-primary" ng-href="/auth/logout">Logout</md-button>
-				</div>
-    	</md-sidenav>
-    </nav>
+	    	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    			<md-toolbar>
+    				<div class="md-toolbar-tools">
+        			<md-button ng-click="navCtrl.sideNavClose()" hide-gt-sm class="md-icon-button" aria-label="Navigation-Close">
+          				<md-icon md-svg-icon="img/icons/ic_clear_white_48px.svg"></md-icon>
+        			</md-button>
+    				</div>
+    			</md-toolbar>
+    				<div layout="column">
+    					<md-button class="md-primary" ui-sref="home" ng-click="navCtrl.sideNavClose()">Home</md-button>
+    					<md-button class="md-primary" ui-sref="login" ng-click="navCtrl.sideNavClose()">Login/Register</md-button>
+    					<md-button class="md-primary" ui-sref="dash" ng-click="navCtrl.sideNavClose()">Dashboard</md-button>
+    					<md-button class="md-primary" ng-href="/auth/logout" ng-click="navCtrl.sideNavClose()">Logout</md-button>
+					</div>
+    		</md-sidenav>
+    	</nav>
+    </div>
 
+    <div style="min-height: 900px">
+    		<ui-view></ui-view>
+	</div>
 
-
-	<ui-view></ui-view>
 
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
