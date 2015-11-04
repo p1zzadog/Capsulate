@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var schedule = require('node-schedule');
 
 var rule = new schedule.RecurrenceRule();
-rule.hour=19;
+rule.hour=10;
 rule.minute=00;
 
 var job = schedule.scheduleJob(rule, function(){
