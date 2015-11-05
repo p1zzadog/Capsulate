@@ -21,15 +21,15 @@
         			<md-icon md-svg-icon="img/icons/ic_more_vert_white_48px.svg"></md-icon>
        			</md-button>
        		</div>
-       		<div flex="33">
+       		<div flex="33" ng-hide="navCtrl.bannerClose">
 				<h1>Capsulate</h1>
 			</div>
 		</div>
 
 	
 		<nav>
-    		<md-toolbar layout-padding>
-   		   		<div class="md-toolbar-tools">
+    		<md-toolbar>
+   		   		<div class="md-toolbar-tools" layout="row" layout-padding layout-align="space-between end">
         			<md-button ng-click="navCtrl.sideNavOpen()" hide-gt-sm class="md-icon-button" aria-label="Navigation">
           				<md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
         			</md-button>
@@ -38,6 +38,9 @@
 						<md-button ui-sref="login">Login/Register</md-button>
 						<md-button ui-sref="dash">Dashboard</md-button>
 						<md-button href="/auth/logout">Logout</md-button>
+					</div>
+					<div>
+						<h1>Capsulate</h1>
 					</div>
       			</div>
     		</md-toolbar>
