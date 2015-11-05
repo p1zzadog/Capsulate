@@ -38,6 +38,8 @@ angular.module('capsuleApp')
 	.controller('navController', ['$http', '$mdSidenav', '$window', '$scope', function($http, $mdSidenav, $window, $scope){
 		var navCtrl = this;
 
+		navCtrl.bannerClose = false;
+
 		navCtrl.sideNavOpen = function(){
 			$mdSidenav('left').open();
 		}
