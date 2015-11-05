@@ -13,13 +13,13 @@
 <body ng-cloak>
 
 	<div ng-controller="navController as navCtrl">
-		<div layout="row" class="banner banner-image" ng-class="{'closed' : navCtrl.bannerClose}" ng-click="navCtrl.closeBanner()">
+		<div layout="row" class="banner banner-image" ng-class="{'closed' : navCtrl.bannerClose}">
 			<div flex="33" hide show-gt-lg>
 			</div>
 			<div flex="33" layout="column" layout-align="space-around center" hide show-gt-lg>
-<!-- 				<md-button ng-click="navCtrl.closeBanner()" class="md-icon-button" aria-label="closeBanner" class="close-banner-btn" flex="33">
+				<md-button ng-click="navCtrl.closeBanner()" class="md-icon-button" aria-label="closeBanner" class="close-banner-btn" flex="33">
         			<md-icon md-svg-icon="img/icons/ic_more_vert_white_48px.svg"></md-icon>
-       			</md-button> -->
+       			</md-button>
        		</div>
        		<div flex="33">
 				<h1>Capsulate</h1>
