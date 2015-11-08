@@ -1,5 +1,5 @@
 angular.module('capsuleApp')
-	.controller('dashController', ['$http', '$scope', function($http, $scope){
+	.controller('dashController', ['$http', 'Upload', function($http, Upload){
 
 		var dashCtrl = this;
 
@@ -35,6 +35,8 @@ angular.module('capsuleApp')
       	
   		// create capsule form submit
 		dashCtrl.createCapsule = function() {
+
+			console.log('dashCtrl.createCapsuleForm: ', dashCtrl.createCapsuleForm)
 			// CODE FOR PRODUCTION
 			dashCtrl.createCapsuleForm.creationDate = new Date();
 			
@@ -47,7 +49,8 @@ angular.module('capsuleApp')
 				url    : '/api/create-capsule',
 				data   : dashCtrl.createCapsuleForm,
 			}).then(function(returnData){
-				console.log(returnData.data);
+				console.log(returnData.data.success);
+				upload(dashCtrl.createCapsuleForm.image, returnData.data.capsuleId);
 			});
 
 			dashCtrl.createCapsuleForm = {};
@@ -63,8 +66,8 @@ angular.module('capsuleApp')
 		// view unlocked capsule
 		dashCtrl.openCapsule = function(index){
 			if (!dashCtrl.unlockedCapsule[index]){
-				dashCtrl.closeCapsules();
-				dashCtrl.closeShared();
+				closeCapsules();
+				closeShared();
 				dashCtrl.unlockedCapsule = [];
 				$http({
 					method : 'get',
@@ -76,8 +79,8 @@ angular.module('capsuleApp')
 				});	
 			}
 			else {
-				dashCtrl.closeCapsules();
-				dashCtrl.closeShared();
+				closeCapsules();
+				closeShared();
 			}
 		};
 
@@ -97,8 +100,8 @@ angular.module('capsuleApp')
 
 		dashCtrl.openShared = function(index){
 			if (!dashCtrl.unlockedSharedCapsule[index]){
-				dashCtrl.closeCapsules();
-				dashCtrl.closeShared();
+				closeCapsules();
+				closeShared();
 				dashCtrl.unlockedSharedCapsule = [];
 				$http({
 					method : 'get',
@@ -110,8 +113,8 @@ angular.module('capsuleApp')
 				});	
 			}
 			else {
-				dashCtrl.closeCapsules();
-				dashCtrl.closeShared();
+				closeCapsules();
+				closeShared();
 			}
 		}
 
@@ -143,7 +146,7 @@ angular.module('capsuleApp')
 						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
 						capsule.creationWrapper = moment(capsule.creationDate).format("dddd, MMMM Do YYYY");
 					});
-					dashCtrl.closeCapsules();
+					closeCapsules();
 
 				};
 			});
@@ -174,7 +177,7 @@ angular.module('capsuleApp')
 						capsule.unlockWrapper = moment(capsule.unlockDate).format("dddd, MMMM Do YYYY");
 						capsule.creationWrapper = moment(capsule.creationDate).format("dddd, MMMM Do YYYY");
 					});
-					dashCtrl.closeShared();
+					closeShared();
 				};
 			});
 		};
@@ -188,7 +191,7 @@ angular.module('capsuleApp')
 			})
 		}
 
-		dashCtrl.closeCapsules = function(){
+		closeCapsules = function(){
 			dashCtrl.unlockedCapsule = [];
 			dashCtrl.openCapsuleButtonText = [];
 			for (var i = 0; i<dashCtrl.userCapsules.length; i++){
@@ -196,12 +199,31 @@ angular.module('capsuleApp')
 			};			
 		};
 
-		dashCtrl.closeShared = function(){
+		closeShared = function(){
 			dashCtrl.unlockedSharedCapsule = [];
 			dashCtrl.openSharedButtonText = [];
 			for (var i = 0; i<dashCtrl.sharedCapsules.length; i++){
 				dashCtrl.openSharedButtonText[i]="Open";
 			};	
 		}
+
+		upload = function (file, capsuleId) {
+        	Upload.upload({
+            	url  : '/api/upload-photo',
+            	data : {
+            		file: file,
+            		'username': dashCtrl.user.username,
+            		capsuleId : capsuleId,
+            	}
+        	}).then(function (resp) {
+        		console.log('resp', resp)
+            	console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        	}, function (resp) {
+            	console.log('Error status: ' + resp.status);
+        	}, function (evt) {
+            	var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            	console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        	});
+    	};
 
 	}]);

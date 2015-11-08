@@ -53,8 +53,11 @@ var createCapsule = function(req, res, next){
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 			// MAKE SURE TO UN-COMMENT THIS TO SEND EMAILS TO CONTRIBUTERS
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-			checkForInvites(document, req.user);
-			res.send({success: "the capsule was created!"})
+			// checkForInvites(document, req.user);
+			res.send({
+				success   : "the capsule was created!",
+				capsuleId : document._id
+			});
 		}
 	});
 };
@@ -101,10 +104,7 @@ var getInvites = function(req, res, next){
 };
 
 var getShared = function(req, res, next){
-	console.log('getShared');
 	Capsule.find({inviteFriends:req.user.email}, function(err, docs){
-		console.log('getShared err', err);
-		console.log('getShared docs', docs);
 		if (!err){
 			res.send({capsules : docs.map(function(doc){
 				return {

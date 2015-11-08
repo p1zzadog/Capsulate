@@ -4,8 +4,8 @@
    	<div flex="100"layout="row">
        <md-card layout-padding flex="100" flex-gt-lg="50" flex-offset-gt-lg="25">
 
-          <!-- <form ng-submit="dashCtrl.createCapsule()" name="createCapsuleForm"> -->
-          <form name="createCapsuleForm">
+          <form ng-submit="dashCtrl.createCapsule()" enctype="multipart/form-data">
+          <!-- <form name="createCapsuleForm" enctype="multipart/form-data"> -->
 
 			<div layout>
 				<md-input-container flex>
@@ -15,14 +15,17 @@
 			</div>
 			<div layout="column">
           		<md-input-container flex>
-          			<label ng-class="{'input-text-color' : dashCtrl.labelColor1 }">Would you like to upload a photo?</label>
+<!--           			<label ng-class="{'input-text-color' : dashCtrl.labelColor1 }">Would you like to upload a photo?</label> -->
+          			<label>Would you like to upload a photo?</label>
           		</md-input-container>
-          		<div ng-click="dashCtrl.labelColor1 = true">
+<!--           		<div ng-click="dashCtrl.labelColor1 = true">
       				<md-button class="md-primary md-raised" ng-blur="dashCtrl.labelColor1 = false">
         				<label for="file-input">Select File</label>  
       				</md-button>
       			</div>
-      			<input id="file-input" type="file" ng-model="dashCtrl.createCapsuleForm.image" class="ng-hide"/>
+      			<input id="file-input" type="file" ng-model="dashCtrl.createCapsuleForm.image" class="ng-hide"/> -->
+      			<!-- <input type="file" ng-model="dashCtrl.createCapsuleForm.image"/> -->
+				<input type="file"  ng-model="dashCtrl.createCapsuleForm.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB">Select Photo</input>
 			</div>		
 			<div layout>
 				<md-input-container flex>
@@ -113,8 +116,8 @@
         			<div ng-message="maxdate">Date is too late!</div>
       			</div>
 			</div>			
-			<md-button ng-click="dashCtrl.createCapsule()" class="md-primary md-raised">Submit Capsule</md-button>
-			<!-- <md-button type="submit" class="md-primary md-raised">Submit Capsule</md-button>	 -->
+			<!-- <md-button ng-click="dashCtrl.createCapsule()" class="md-primary md-raised">Submit Capsule</md-button> -->
+			<md-button type="submit" class="md-primary md-raised">Submit Capsule</md-button>	
 		</form>
 	</md-card>
 </div>

@@ -1,5 +1,5 @@
 // instatiate
-angular.module('capsuleApp', ['ui.router', 'ngMaterial', 'ngMessages', 'ngAnimate'])
+angular.module('capsuleApp', ['ui.router', 'ngMaterial', 'ngMessages', 'ngAnimate', 'ngFileUpload'])
 
 // configure
 angular.module('capsuleApp')
@@ -49,7 +49,6 @@ angular.module('capsuleApp')
 		}
 
 		navCtrl.closeBanner = function(){
-			console.log('closeBanner');
 			navCtrl.bannerClose = true;
 		}
 
