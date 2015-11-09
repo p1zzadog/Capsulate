@@ -7,7 +7,6 @@ var capsuleControl = require('../controllers/capsuleControl.js');
 var multer = require('multer');
 var s3 = require('s3');
 var awsKeys = require('../awsKeys.js');
-
 var client = s3.createClient({
   maxAsyncS3: 20,     // this is the default 
   s3RetryCount: 3,    // this is the default 
@@ -21,10 +20,19 @@ var client = s3.createClient({
     // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property 
   },
 });
-
-console.log(client)
-
 var upload = multer({ dest: './uploads/photos'});
+// var storage = multer.diskStorage({
+// 	destination: function (req, file, cb) {
+//     	cb(null, './tmp/uploads/photos')
+// 	},
+// 	filename: function (req, file, cb) {
+// 		cb(null, file.fieldname + '-' + Date.now())
+// 	},
+// });
+// var upload = multer({
+// 	storage: storage,
+// });
+
 
 // view routes
 router.get('/', function(req, res){
@@ -44,15 +52,21 @@ router.get('/api/me', ensureAuthAjax, function(req, res){
 	res.send({ user : req.user.username});
 });
 router.post('/api/create-capsule', ensureAuthAjax, capsuleControl.createCapsule);
-
 // upload.single('string') string needs to be name of object key being sent from front end
 router.post('/api/upload-photo', ensureAuthAjax, upload.single('file'), function(req, res, next){
-	console.log('req.file: ', req.file)
+	console.log(req.file);
+
+	var fileExtension = function(){
+		if (req.file.mimetype==='image/jpeg'){
+			return '.jpg'
+		};
+	};
+
 	var params = {
   		localFile: "./uploads/photos/" + req.file.filename,
  		s3Params: {
     		Bucket: "encapsulate",
-    		Key: "TEST",
+    		Key: String(req.body.capsuleId) + fileExtension(),
     		// other options supported by putObject, except Body and ContentLength. 
     		// See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property 
   		},
@@ -68,8 +82,6 @@ router.post('/api/upload-photo', ensureAuthAjax, upload.single('file'), function
   		console.log("done uploading");
 	});
 });
-
-
 router.get('/api/get-capsules', ensureAuthAjax, capsuleControl.getCapsules);
 router.get('/api/get-invites', ensureAuthAjax, capsuleControl.getInvites);
 router.get('/api/get-shared', ensureAuthAjax, capsuleControl.getShared);
