@@ -22,20 +22,9 @@ var client = s3.createClient({
   },
 });
 
-// var upload = multer({
-// 	storage : s3({
-// 		dirname         : './uploads/photos',
-// 		bucket          : 'encapsulate',
-// 		secretAccessKey : awsKeys.secret,
-// 		accessKeyId     : awsKeys.access,
-// 		region          : 'Oregon',
-// 		filename        : function(req, file, cb){
-// 			console.log('multer upload storage filename cb')
-// 			cb(null, Date.now())
-// 		},
-// 	}),
-// });
-var upload = multer({ dest: 'uploads/photos' })
+console.log(client)
+
+var upload = multer({ dest: './uploads/photos'});
 
 // view routes
 router.get('/', function(req, res){
@@ -58,10 +47,26 @@ router.post('/api/create-capsule', ensureAuthAjax, capsuleControl.createCapsule)
 
 // upload.single('string') string needs to be name of object key being sent from front end
 router.post('/api/upload-photo', ensureAuthAjax, upload.single('file'), function(req, res, next){
-	console.log('anonymous cb function on /api/upload-photo');
-	console.log('req.body: ', req.body);
-	console.log('req.file: ', req.file);
-	res.send('/api/upload-photo maybe success??');
+	console.log('req.file: ', req.file)
+	var params = {
+  		localFile: "./uploads/photos/" + req.file.filename,
+ 		s3Params: {
+    		Bucket: "encapsulate",
+    		Key: "TEST",
+    		// other options supported by putObject, except Body and ContentLength. 
+    		// See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property 
+  		},
+	};
+	var uploader = client.uploadFile(params);
+	uploader.on('error', function(err) {
+  		console.error("unable to upload:", err.stack);
+	});
+	uploader.on('progress', function() {
+  		console.log("progress", uploader.progressMd5Amount, uploader.progressAmount, uploader.progressTotal);
+	});
+	uploader.on('end', function() {
+  		console.log("done uploading");
+	});
 });
 
 
