@@ -25,7 +25,7 @@
       			</div>
       			<input id="file-input" type="file" ng-model="dashCtrl.createCapsuleForm.image" class="ng-hide"/> -->
       			<!-- <input type="file" ng-model="dashCtrl.createCapsuleForm.image"/> -->
-				<input type="file"  ng-model="dashCtrl.createCapsuleForm.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB">Select Photo</input>
+				<md-button ngf-select ng-model="dashCtrl.capsuleImageUpload.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="2MB">Select Photo</md-button>
 			</div>		
 			<div layout>
 				<md-input-container flex>

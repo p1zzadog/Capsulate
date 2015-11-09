@@ -50,7 +50,7 @@ angular.module('capsuleApp')
 				data   : dashCtrl.createCapsuleForm,
 			}).then(function(returnData){
 				console.log(returnData.data.success);
-				upload(dashCtrl.createCapsuleForm.image, returnData.data.capsuleId);
+				upload(dashCtrl.capsuleImageUpload.image, returnData.data.capsuleId);
 			});
 
 			dashCtrl.createCapsuleForm = {};
@@ -209,10 +209,10 @@ angular.module('capsuleApp')
 
 		upload = function (file, capsuleId) {
         	Upload.upload({
-            	url  : '/api/upload-photo',
-            	data : {
-            		file: file,
-            		'username': dashCtrl.user.username,
+            	url    : '/api/upload-photo',
+            	method : 'post',
+            	data   : {
+            		file      : file,
             		capsuleId : capsuleId,
             	}
         	}).then(function (resp) {
