@@ -6,11 +6,9 @@ var ensureAuthAjax = require('../auth/authConfig/passport.js').ensureAuthAjax;
 var authControl = require('../auth/authController/authControl.js');
 var capsuleControl = require('../controllers/capsuleControl.js');
 var multer = require('multer');
-// var s3 = require('s3');
-// using an s3 storage engine for multer
-var s3 = require('multer-storage-s3');
-var awsKeys = require('../awsKeys.js');
 
+// using an s3 storage engine for multer, uses .env file for aws keys
+var s3 = require('multer-storage-s3');
 var storage = s3({
     destination : function( req, file, cb ) {        
       cb( null, 'capsulate-uploads/' );        
