@@ -12,7 +12,7 @@
 
 					<div ng-if="dashCtrl.unlockedSharedCapsule[$index]">
 						<h4>You attached the following picture:</h4>
-						<img ng-src="./img/attachments/pizzadog2.jpg">
+						<img ng-src="{{dashCtrl.unlockedSharedCapsule[$index].photoUrl}}">
 						<h4>What is your nickname? Do you like it?</h4>
 						<p ng-bind="dashCtrl.unlockedSharedCapsule[$index].nickname"></p>
 						<h4>Where are you now?</h4>

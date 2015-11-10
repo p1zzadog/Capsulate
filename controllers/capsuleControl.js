@@ -53,7 +53,7 @@ var createCapsule = function(req, res, next){
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 			// MAKE SURE TO UN-COMMENT THIS TO SEND EMAILS TO CONTRIBUTERS
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-			// checkForInvites(document, req.user);
+			checkForInvites(document, req.user);
 			res.send({
 				success   : "the capsule was created!",
 				capsuleId : document._id
@@ -237,8 +237,6 @@ var submitContribution = function(req, res, next) {
 };
 
 var getContributions = function(req, res, next){
-	console.log('capsuleId', req.params.capsuleId);
-
 	Contribution.find({capsuleId:req.params.capsuleId}, function(err, docs){
 		if (err){
 			res.send({error: "there was an error grabbing contributions"});

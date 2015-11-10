@@ -36,21 +36,17 @@ angular.module('capsuleApp')
   		// create capsule form submit
 		dashCtrl.createCapsule = function() {
 
-			console.log('dashCtrl.createCapsuleForm: ', dashCtrl.createCapsuleForm)
-			// CODE FOR PRODUCTION
 			dashCtrl.createCapsuleForm.creationDate = new Date();
 			
-			// CODE FOR DEMO!! Remove me for production
-			// dashCtrl.createCapsuleForm.creationDate = new Date(1996, 9, 8);
-			// /CODE FOR DEMO
-
 			$http({
 				method : 'post',
 				url    : '/api/create-capsule',
 				data   : dashCtrl.createCapsuleForm,
 			}).then(function(returnData){
-				console.log(returnData.data.success);
-				upload(dashCtrl.capsuleImageUpload.image, returnData.data.capsuleId);
+				if (returnData.data.success){
+					upload(dashCtrl.capsuleImageUpload.image, returnData.data.capsuleId);
+				}
+				
 			});
 
 			dashCtrl.createCapsuleForm = {};
@@ -74,7 +70,6 @@ angular.module('capsuleApp')
 					url    : '/api/open-capsule/' + dashCtrl.userCapsules[index]._id,
 				}).then(function(returnData){
 					dashCtrl.unlockedCapsule[index] = returnData.data;
-					console.log(dashCtrl.unlockedCapsule[index])
 					dashCtrl.openCapsuleButtonText[index] = "Close!";
 					getContributions(dashCtrl.unlockedCapsule[index]);
 				});	
@@ -192,7 +187,7 @@ angular.module('capsuleApp')
 			})
 		}
 
-		closeCapsules = function(){
+		 function closeCapsules(){
 			dashCtrl.unlockedCapsule = [];
 			dashCtrl.openCapsuleButtonText = [];
 			for (var i = 0; i<dashCtrl.userCapsules.length; i++){
@@ -200,7 +195,7 @@ angular.module('capsuleApp')
 			};			
 		};
 
-		closeShared = function(){
+		function closeShared(){
 			dashCtrl.unlockedSharedCapsule = [];
 			dashCtrl.openSharedButtonText = [];
 			for (var i = 0; i<dashCtrl.sharedCapsules.length; i++){
@@ -208,7 +203,7 @@ angular.module('capsuleApp')
 			};	
 		}
 
-		upload = function (file, capsuleId) {
+		function upload(file, capsuleId){
         	Upload.upload({
             	url    : '/api/upload-photo',
             	method : 'post',
@@ -217,7 +212,7 @@ angular.module('capsuleApp')
             		capsuleId : capsuleId,
             	}
         	}).then(function (resp) {
-        		console.log('resp', resp)
+        		// console.log('resp', resp)
             	console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
         	}, function (resp) {
             	console.log('Error status: ' + resp.status);
