@@ -17,7 +17,14 @@
           			<md-input-container flex>
           				<label>Would you like to upload a photo?</label>
           			</md-input-container>
-					<md-button ngf-select ng-model="dashCtrl.capsuleImageUpload.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="2MB" ngf-fix-orientation="false">Select Photo</md-button>
+          			<div layout="row">
+          				<md-button ngf-select ng-model="dashCtrl.capsuleImageUpload.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="2MB" ngf-fix-orientation="false" class="md-primary md-raised" name="capsulePhoto">Select Photo</md-button>
+          			</div>
+					<div ng-bind="dashCtrl.capsuleImageUpload.image.name"></div>
+					<div ng-messages="createCapsuleForm.capsulePhoto.$error">
+						<div ng-message="max-size" style="color:red">Image must be less than 2MB</div>
+          				<div ng-message="pattern" style="color:red">This must be an image.</div>
+        			</div>
 				</div>		
 				<div layout>
 					<md-input-container flex>

@@ -19,6 +19,9 @@ var storage = s3({
         if (file.mimetype==='image/jpeg'){
           return '.jpg'
         };
+        if (file.mimetype==='image/png'){
+          return '.png'
+        };
       };        
       cb( null, Date.now() + fileExtension() );        
     },

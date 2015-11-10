@@ -36,24 +36,30 @@ angular.module('capsuleApp')
   		// create capsule form submit
 		dashCtrl.createCapsule = function() {
 
-			dashCtrl.createCapsuleForm.creationDate = new Date();
-			
-			$http({
-				method : 'post',
-				url    : '/api/create-capsule',
-				data   : dashCtrl.createCapsuleForm,
-			}).then(function(returnData){
-				if (returnData.data.success){
-					upload(dashCtrl.capsuleImageUpload.image, returnData.data.capsuleId);
-				}
-				
-			});
+			if (dashCtrl.capsuleImageUpload.image.type === 'image/jpeg' || dashCtrl.capsuleImageUpload.image.type === 'image/png'){
 
-			dashCtrl.createCapsuleForm = {};
-			dashCtrl.createCapsuleForm.inviteFriends = [];
-			dashCtrl.createCapsuleForm.unlockDate = new Date();
-			getCapsules();
-			dashCtrl.selectedIndex = 1;
+				dashCtrl.createCapsuleForm.creationDate = new Date();
+			
+				$http({
+					method : 'post',
+					url    : '/api/create-capsule',
+					data   : dashCtrl.createCapsuleForm,
+				}).then(function(returnData){
+					if (returnData.data.success){
+						upload(dashCtrl.capsuleImageUpload.image, returnData.data.capsuleId);
+					}
+				
+				});
+
+				dashCtrl.createCapsuleForm = {};
+				dashCtrl.createCapsuleForm.inviteFriends = [];
+				dashCtrl.createCapsuleForm.unlockDate = new Date();
+				getCapsules();
+				dashCtrl.selectedIndex = 1;
+			}
+			else{
+				console.log({error: 'upload invalid filetype'})
+			}
 		}
 
 		

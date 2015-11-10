@@ -62,8 +62,13 @@ var createCapsule = function(req, res, next){
 	});
 };
 
+// need to right filetype validation middleware
+var ensureImageFiletype = function(req, res, next){
+	// console.log('ensureImageFiletype req: ', req._readableState.buffer);
+	// return next;
+}
+
 var attachPhotoUrl = function(req, res, next){
-	console.log(req.file.s3.Location);
 	Capsule.findOne({_id:req.body.capsuleId, username:req.user.username}, function(err, doc){
 		if (!err){
 			doc.photoUrl = req.file.s3.Location;
@@ -249,6 +254,7 @@ var getContributions = function(req, res, next){
 
 module.exports = {
 	createCapsule        : createCapsule,
+	ensureImageFiletype  : ensureImageFiletype,
 	attachPhotoUrl       : attachPhotoUrl,
 	getCapsules          : getCapsules,
 	getInvites           : getInvites,
