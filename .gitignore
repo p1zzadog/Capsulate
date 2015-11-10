@@ -5,3 +5,4 @@ sendgrid-api-key
 awsKeys.js
 uploads
 tmp
+.env

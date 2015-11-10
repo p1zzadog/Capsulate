@@ -9,6 +9,7 @@ var mongoose       = require('mongoose');
 var passport       = require('passport');
 var passportConfig = require('./auth/authConfig/passport.js');
 var job = require('./senderDaemon.js').job;
+require('dotenv').load();
 // var awsKeys = require('./awsKeys.js');
 
 mongoose.connect('mongodb://localhost/encapsulate');

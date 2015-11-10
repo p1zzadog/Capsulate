@@ -62,6 +62,21 @@ var createCapsule = function(req, res, next){
 	});
 };
 
+var attachPhotoUrl = function(req, res, next){
+	console.log(req.file.s3.Location);
+	Capsule.findOne({_id:req.body.capsuleId, username:req.user.username}, function(err, doc){
+		if (!err){
+			doc.photoUrl = req.file.s3.Location;
+			doc.save();
+			res.send({success: 'upload successful'});
+		}
+		else{
+			res.send({error: 'photo not attached to capsule'});
+		};
+
+	});
+};
+
 var getCapsules = function(req, res, next){
 	Capsule.find({username:req.user.username}, function(err, docs){
 		if (!err){
@@ -236,6 +251,7 @@ var getContributions = function(req, res, next){
 
 module.exports = {
 	createCapsule        : createCapsule,
+	attachPhotoUrl       : attachPhotoUrl,
 	getCapsules          : getCapsules,
 	getInvites           : getInvites,
 	getShared            : getShared,

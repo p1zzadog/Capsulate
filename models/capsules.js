@@ -17,6 +17,7 @@ var capsuleSchema = mongoose.Schema({
 	bestThing        : {type : String},
 	personalMessage  : {type : String},
 	creationDate     : {type : Date},
+	photoUrl         : {type : String},
 
 });
 

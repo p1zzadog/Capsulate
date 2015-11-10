@@ -74,6 +74,7 @@ angular.module('capsuleApp')
 					url    : '/api/open-capsule/' + dashCtrl.userCapsules[index]._id,
 				}).then(function(returnData){
 					dashCtrl.unlockedCapsule[index] = returnData.data;
+					console.log(dashCtrl.unlockedCapsule[index])
 					dashCtrl.openCapsuleButtonText[index] = "Close!";
 					getContributions(dashCtrl.unlockedCapsule[index]);
 				});	
