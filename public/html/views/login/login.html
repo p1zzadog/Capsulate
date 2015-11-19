@@ -1,12 +1,11 @@
 <md-tabs md-dynamic-height md-border-bottom>
     <md-tab label="Login">
 		<span ng-hide="loginCtrl.loggedIn" ng-include="'./html/views/login/login.login.html'"></span>
-		<div ng-show="loginCtrl.loggedIn" ng-include="'./html/views/login/login.loggedin.html'"></div>
+		<span ng-show="loginCtrl.loggedIn" ng-include="'./html/views/login/login.loggedin.html'"></span>
 	</md-tab>
 
 	<md-tab label="Register New User">
 		<span ng-hide="loginCtrl.loggedIn" ng-include="'./html/views/login/login.register.html'"></span>
-		<div ng-show="loginCtrl.loggedIn" ng-include="'./html/views/login/login.loggedin.html'"></div>		
+		<span ng-show="loginCtrl.loggedIn" ng-include="'./html/views/login/login.loggedin.html'"></span>		
 	</md-tab>
 </md-tabs>
-

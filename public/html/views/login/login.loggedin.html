@@ -1,8 +1,19 @@
-<md-content layout-padding>
-	<h1 flex-offset-gt-lg="25" class="md-display-2">Logged In</h1>
-	<md-card layout-padding flex="100" flex-gt-lg="50" flex-offset-gt-lg="25">
-		<div class="md-list-item-text" layout="column">
-		<h2>You are already logged in as <span ng-bind="loginCtrl.user"></span>. Would you like to <a href="/auth/logout">logout?</a></h2>
-		</div>
-	</md-card>
+<md-content layout-padding layout="column">
+
+	<div layout="row">
+		<div flex="20"></div>
+		<div flex="60" class="center-text"><h1 class="md-display-2">Logged In</h1></div>
+		<div flex="20"></div>
+	</div>
+
+	<div layout="row">
+		<div flex="20" hide-sm></div>
+		<md-card layout-padding flex-gt-sm="60" flex-sm="100">
+			<div class="md-list-item-text" layout="column">
+				<h2>You are already logged in as <span ng-bind="loginCtrl.user"></span>. Would you like to <a href="/auth/logout">logout?</a></h2>
+			</div>
+		</md-card>
+		<div flex="20" hide-sm></div>
+	</div>
+
 </md-content>

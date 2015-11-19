@@ -8,12 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.0-rc1/angular-material.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/main.css">	
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
 </head>
 <body ng-cloak>
 
-	<div ng-controller="navController as navCtrl">
-		<div layout="row" class="banner banner-image" ng-class="{'closed' : navCtrl.bannerClose}">
+
+		<!-- <div layout="row" class="banner banner-image" ng-class="{'closed' : navCtrl.bannerClose}">
 			<div flex="33" hide show-gt-lg>
 			</div>
 			<div flex="33" layout="column" layout-align="space-around center" hide show-gt-lg>
@@ -24,15 +24,13 @@
        		<div flex="33" ng-hide="navCtrl.bannerClose">
 				<h1>Capsulate</h1>
 			</div>
-		</div>
+		</div> -->
 
-	
-		<nav>
-    		<md-toolbar>
-   		   		<div class="md-toolbar-tools" layout="row" layout-padding layout-align="space-between end">
-        			<md-button ng-click="navCtrl.sideNavOpen()" hide-gt-sm class="md-icon-button" aria-label="Navigation">
-          				<md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
-        			</md-button>
+		<nav ng-controller="navController as navCtrl">
+    	<md-toolbar class="md-toolbar-tools" layout="row" layout-padding layout-align="space-between end">
+      		<md-button ng-click="navCtrl.sideNavOpen()" hide-gt-sm class="md-icon-button" aria-label="Navigation">
+        			<md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
+      		</md-button>
 					<div hide-sm>
 						<md-button ui-sref="home">Home</md-button></a>
 						<md-button ui-sref="login">Login/Register</md-button>
@@ -42,43 +40,35 @@
 					<div>
 						<h1>Capsulate</h1>
 					</div>
-      			</div>
+    	</md-toolbar>
+	    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    		<md-toolbar class="md-toolbar-tools">
+      			<md-button ng-click="navCtrl.sideNavClose()" hide-gt-sm class="md-icon-button" aria-label="Navigation-Close">
+        				<md-icon md-svg-icon="img/icons/ic_clear_white_48px.svg"></md-icon>
+      			</md-button>
     		</md-toolbar>
-	    	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-    			<md-toolbar>
-    				<div class="md-toolbar-tools">
-        			<md-button ng-click="navCtrl.sideNavClose()" hide-gt-sm class="md-icon-button" aria-label="Navigation-Close">
-          				<md-icon md-svg-icon="img/icons/ic_clear_white_48px.svg"></md-icon>
-        			</md-button>
-    				</div>
-    			</md-toolbar>
-    				<div layout="column">
-    					<md-button class="md-primary" ui-sref="home" ng-click="navCtrl.sideNavClose()">Home</md-button>
-    					<md-button class="md-primary" ui-sref="login" ng-click="navCtrl.sideNavClose()">Login/Register</md-button>
-    					<md-button class="md-primary" ui-sref="dash" ng-click="navCtrl.sideNavClose()">Dashboard</md-button>
-    					<md-button class="md-primary" ng-href="/auth/logout" ng-click="navCtrl.sideNavClose()">Logout</md-button>
-					</div>
-    		</md-sidenav>
-    	</nav>
-    </div>
+    		<div layout="column">
+    			<md-button class="md-primary" ui-sref="home" ng-click="navCtrl.sideNavClose()">Home</md-button>
+    			<md-button class="md-primary" ui-sref="login" ng-click="navCtrl.sideNavClose()">Login/Register</md-button>
+    			<md-button class="md-primary" ui-sref="dash" ng-click="navCtrl.sideNavClose()">Dashboard</md-button>
+    			<md-button class="md-primary" ng-href="/auth/logout" ng-click="navCtrl.sideNavClose()">Logout</md-button>
+				</div>
+    	</md-sidenav>
+		</nav>
 
-    <div class="template-container">
-    		<ui-view></ui-view>
-	</div>
+  	<ui-view class="template-container"></ui-view>
 
-
-
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-animate.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-aria.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.0-rc1/angular-material.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-messages.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/9.1.2/ng-file-upload.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/9.1.2/ng-file-upload-shim.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-	<script type="text/javascript" src="/js/ngConfig.js"></script>
-	<script type="text/javascript" src="/js/ngHome.js"></script>
-	<script type="text/javascript" src="/js/ngLogin.js"></script>
-	<script type="text/javascript" src="/js/ngDash.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-animate.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-aria.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.0-rc1/angular-material.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-messages.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/9.1.2/ng-file-upload.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/9.1.2/ng-file-upload-shim.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+		<script type="text/javascript" src="/js/ngConfig.js"></script>
+		<script type="text/javascript" src="/js/ngHome.js"></script>
+		<script type="text/javascript" src="/js/ngLogin.js"></script>
+		<script type="text/javascript" src="/js/ngDash.js"></script>
 </body>
 </html>

@@ -16,6 +16,10 @@
 	min-height: 850px;
 }
 
+.center-text {
+	text-align: center;
+}
+
 @media screen and (min-width: 1200px) {
 
 .banner-image{
