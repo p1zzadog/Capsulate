@@ -9,17 +9,17 @@ gulp.task('default', function(){
 });
 
 gulp.task('build-js', function(){
-	gulp.src('./public/js/**/*.js')
-		.pipe(concat('alljs.js'))
+	gulp.src(['./public/js/source/ngConfig.js', './public/js/source/**/*.js'])
+		.pipe(concat('buildjs.js'))
 		.pipe(makeItUgly())
-		.pipe(gulp.dest('./public/dest/js'));
+		.pipe(gulp.dest('./public/js/build/'));
 });
 
 gulp.task('build-css', function(){
-	gulp.src('./public/css/**/*.css')
-	.pipe(concat('allcss.css'))
+	gulp.src('./public/css/source/**/*.css')
+	.pipe(concat('buildcss.css'))
 	.pipe(min())
-	.pipe(gulp.dest('./public/dest/css'));
+	.pipe(gulp.dest('./public/css/build/'));
 });
 
 gulp.task('ticktock', function(){

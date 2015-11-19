@@ -44,7 +44,7 @@ app.use('/api/get-contributions/:capsuleId', routes);
 
 
 // server
-var port = 80;
+var port = 3000;
 app.listen(port, function(){
 	console.log('server is listening on port ' + port);
 });
