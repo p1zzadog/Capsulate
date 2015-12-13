@@ -45,7 +45,7 @@ angular.module('capsuleApp')
 					url    : '/api/create-capsule',
 					data   : dashCtrl.createCapsuleForm,
 				}).then(function(returnData){
-					if (returnData.data.success){
+					if (returnData.data.success && dashCtrl.capsuleImageUpload.image){
 						upload(dashCtrl.capsuleImageUpload.image, returnData.data.capsuleId);
 					}
 				
