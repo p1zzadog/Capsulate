@@ -36,19 +36,22 @@ angular.module('capsuleApp')
   		// create capsule form submit
 		dashCtrl.createCapsule = function() {
 
-			if (dashCtrl.capsuleImageUpload.image.type === 'image/jpeg' || dashCtrl.capsuleImageUpload.image.type === 'image/png'){
-
 				dashCtrl.createCapsuleForm.creationDate = new Date();
 			
 				$http({
 					method : 'post',
 					url    : '/api/create-capsule',
-					data   : dashCtrl.createCapsuleForm,
+					data   : dashCtrl.createCapsuleForm
 				}).then(function(returnData){
-					if (returnData.data.success && dashCtrl.capsuleImageUpload.image){
-						upload(dashCtrl.capsuleImageUpload.image, returnData.data.capsuleId);
+					if (returnData.data.success && dashCtrl.capsuleImageUpload){
+                        if (dashCtrl.capsuleImageUpload.image.type === 'image/jpeg' || dashCtrl.capsuleImageUpload.image.type === 'image/png'){
+                            upload(dashCtrl.capsuleImageUpload.image, returnData.data.capsuleId);
+                        }
+                        else{
+                            console.log({error: 'upload invalid filetype'})
+                        }
+
 					}
-				
 				});
 
 				dashCtrl.createCapsuleForm = {};
@@ -56,11 +59,8 @@ angular.module('capsuleApp')
 				dashCtrl.createCapsuleForm.unlockDate = new Date();
 				getCapsules();
 				dashCtrl.selectedIndex = 1;
-			}
-			else{
-				console.log({error: 'upload invalid filetype'})
-			}
-		}
+
+		};
 
 		
 
